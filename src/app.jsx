@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { FixLoader, loader, ProtectedRoute } from 'src/components';
+import { FixLoader, ProtectedRoute } from 'src/components';
 import { Auth, MainPage, NotFound, Personal, Poll, RolePage, UsersList } from 'src/pages';
 import { authActions } from 'src/store/actions';
 

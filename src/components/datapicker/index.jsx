@@ -14,36 +14,43 @@ const MyDataPicker = ({
   clearButton = false,
   ...otherProps
 }) => {
-  const [dateFormated, setDateFormated] = useState();
+  const [dateFormated, setDateFormated] = useState('');
 
-  const handleSetDate = (date) => {
-    const [day, month, year] = date.toLocaleDateString().split('.');
-    const dateString = `${year}-${month}-${day}`;
-
-    setFieldValue(name, dateString);
+  const handleDateChange = (date) => {
+    setDateFormated(date);
+    const currentDate = new Date(dateFormated);
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    setFieldValue(name, formattedDate);
   };
 
   const handleClear = () => {
-    setDateFormated(false);
+    setDateFormated(null);
     setFieldValue(name, null);
   };
 
   useEffect(() => {
     if (value) {
-      const [year, month, day] = value.split('-');
-      setDateFormated(new Date(year, month - 1, day));
-    } else if (!clearButton) {
-      handleSetDate(new Date());
+      const dateString = value;
+      const parts = dateString.split('-'); // Розділяємо рядок по дефісах
+      const year = parseInt(parts[0], 10); // Отримуємо рік
+      const month = parseInt(parts[1], 10) - 1; // Отримуємо місяць (нумерація місяців в JavaScript починається з 0)
+      const day = parseInt(parts[2], 10); // Отримуємо день
+
+      const date = new Date(year, month, day);
+      setDateFormated(date);
     }
   }, [value]);
 
   return (
     <S.Picker>
       <DatePicker
-        selected={dateFormated || null}
+        selected={dateFormated}
         maxDate={maxData ? new Date() : null}
         dateFormat="yyyy-MM-dd"
-        onChange={(date) => handleSetDate(date)}
+        onChange={(date) => handleDateChange(date)}
         customInput={<TextField readOnly {...otherProps} />}
       />
       {clearButton && value && (
