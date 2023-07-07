@@ -1,18 +1,19 @@
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { Button } from '@mui/material';
+import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader, MyModal } from 'src/components';
 import { pollActions } from 'src/store/actions';
 
-import * as S from '../styles';
 import DoPoll from './do-poll';
+import * as S from './styles';
 import VeiwPoll from './view-poll';
 
-const WorkerPoll = () => {
+const WorkerPolls = ({ isMain }) => {
   const waiter = useSelector((state) => state.pollReducer.waiter);
-  const polls = useSelector((state) =>
-    state.pollReducer.polls.filter((poll) => poll.passed === false),
-  );
+  const polls = useSelector((state) => state.pollReducer.polls);
 
   const [openDoPoll, setOpenDoPoll] = useState(false);
   const [selectPoll, setSelectPoll] = useState(0);
@@ -37,7 +38,21 @@ const WorkerPoll = () => {
 
   return (
     <>
-      <S.Title>Всі опитування</S.Title>
+      {isMain ? (
+        <S.MainTop>
+          <S.MainTopTitle>
+            <NewspaperIcon />
+            Мої опитування
+          </S.MainTopTitle>
+          <S.MainTopLink to="poll">
+            Дивитися всі
+            <ArrowForwardIcon />
+          </S.MainTopLink>
+        </S.MainTop>
+      ) : (
+        <S.Title>Всі опитування</S.Title>
+      )}
+
       {!waiter ? (
         <>
           {polls && polls.length ? (
@@ -84,4 +99,8 @@ const WorkerPoll = () => {
   );
 };
 
-export default WorkerPoll;
+WorkerPolls.propTypes = {
+  isMain: PropTypes.bool.isRequired,
+};
+
+export default WorkerPolls;

@@ -31,6 +31,7 @@ const pollSlice = createSlice({
       .addCase(pollActions.getPollsWorker.fulfilled, (state, action) => {
         state.waiter = false;
         state.polls = action.payload.data.data;
+        state.pollsMeta = action.payload.data.meta;
       })
       .addCase(pollActions.getPollsWorker.rejected, (state) => {
         state.waiter = false;

@@ -6,7 +6,7 @@ import { Loader } from 'src/components';
 import returnQType from 'src/helpers/index';
 import { pollActions } from 'src/store/actions';
 
-import * as S from '../styles';
+import * as S from './styles';
 
 const VeiwPoll = ({ selectPoll }) => {
   const waiter = useSelector((state) => state.pollReducer.fixWaiter);

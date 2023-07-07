@@ -23,7 +23,7 @@ import { Loader, MyModal } from 'src/components';
 import returnQType from 'src/helpers/index';
 import { pollActions } from 'src/store/actions';
 
-import * as S from '../styles';
+import * as S from './styles';
 
 const DoPoll = ({ selectPoll, closeComponent }) => {
   const waiter = useSelector((state) => state.pollReducer.fixWaiter);

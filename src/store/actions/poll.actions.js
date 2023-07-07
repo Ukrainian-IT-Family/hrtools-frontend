@@ -5,7 +5,7 @@ export const getPollsWorker = createAsyncThunk(
   'poll/getPollsWorker',
   async (data, { rejectWithValue }) => {
     try {
-      const result = await pollService.getPollsWorker();
+      const result = await pollService.getPollsWorker(data);
 
       return result;
     } catch (error) {

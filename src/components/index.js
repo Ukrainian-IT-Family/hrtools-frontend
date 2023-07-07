@@ -10,3 +10,4 @@ export { default as SelectInput } from './select-input';
 export { default as Sidebar } from './sidebar';
 export { default as UserIcon } from './user-icon';
 export { default as WorkerList } from './worker-list';
+export { default as WorkerPolls } from './workerPolls';

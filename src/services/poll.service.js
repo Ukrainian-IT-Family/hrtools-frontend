@@ -1,13 +1,13 @@
 import { api } from 'src/api';
 
-export const getPollsWorker = async () => {
+export const getPollsWorker = async (data) => {
   const token = localStorage.getItem('userToken');
   const headers = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const result = await api.get(`polls`, headers);
+  const result = await api.get(`polls?page=${data || 1}`, headers);
 
   return result;
 };

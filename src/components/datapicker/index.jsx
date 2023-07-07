@@ -1,7 +1,7 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { TextField } from '@mui/material';
 import { PropTypes } from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import * as S from './styles';
