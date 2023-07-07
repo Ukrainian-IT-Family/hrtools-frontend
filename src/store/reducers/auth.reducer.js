@@ -89,7 +89,6 @@ const authSlice = createSlice({
         state.fixWaiter = false;
       })
       .addCase(authActions.logoutUser.rejected, (state, action) => {
-        state.errors = action.payload.message;
         state.fixWaiter = false;
       })
 

@@ -15,7 +15,6 @@ const MyDataPicker = ({
   ...otherProps
 }) => {
   const [dateFormated, setDateFormated] = useState('');
-
   const handleDateChange = (date) => {
     setDateFormated(date);
     const currentDate = new Date(dateFormated);
@@ -30,19 +29,6 @@ const MyDataPicker = ({
     setDateFormated(null);
     setFieldValue(name, null);
   };
-
-  useEffect(() => {
-    if (value) {
-      const dateString = value;
-      const parts = dateString.split('-'); // Розділяємо рядок по дефісах
-      const year = parseInt(parts[0], 10); // Отримуємо рік
-      const month = parseInt(parts[1], 10) - 1; // Отримуємо місяць (нумерація місяців в JavaScript починається з 0)
-      const day = parseInt(parts[2], 10); // Отримуємо день
-
-      const date = new Date(year, month, day);
-      setDateFormated(date);
-    }
-  }, [value]);
 
   return (
     <S.Picker>

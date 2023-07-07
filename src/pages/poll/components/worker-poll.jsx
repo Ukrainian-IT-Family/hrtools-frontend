@@ -13,6 +13,7 @@ const WorkerPoll = () => {
   const polls = useSelector((state) =>
     state.pollReducer.polls.filter((poll) => poll.passed === false),
   );
+
   const [openDoPoll, setOpenDoPoll] = useState(false);
   const [selectPoll, setSelectPoll] = useState(0);
   const handleOpen = (id) => {

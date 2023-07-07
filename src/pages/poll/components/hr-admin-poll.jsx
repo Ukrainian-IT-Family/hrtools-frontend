@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader, MyModal } from 'src/components';
 import { pollActions } from 'src/store/actions';
@@ -25,9 +26,9 @@ function getStatusTitle(statusId) {
 const HrAdminPoll = () => {
   const waiter = useSelector((state) => state.pollReducer.waiter);
   const polls = useSelector((state) => state.pollReducer.polls);
+  const pollsMeta = useSelector((state) => state.pollReducer.pollsMeta);
   const dispatch = useDispatch();
   const role = useSelector((state) => state.authReducer.user.role);
-
   const [openCreatePoll, setOpenCreatePoll] = useState(false);
   const handleOpen = () => setOpenCreatePoll(true);
   const handleClose = () => setOpenCreatePoll(false);
@@ -46,6 +47,14 @@ const HrAdminPoll = () => {
 
     dispatch(pollActions.getPollsType());
   }, []);
+
+  const handleChangePage = (page) => {
+    if (role === 1) {
+      dispatch(pollActions.getPollsAdmin(page));
+    } else if (role === 3) {
+      dispatch(pollActions.getPollsHr(page));
+    }
+  };
 
   return (
     <>
@@ -91,6 +100,19 @@ const HrAdminPoll = () => {
                   </S.HrWrap>
                 </S.HrRow>
               ))}
+              {pollsMeta.total > 0 && (
+                <S.Paginate>
+                  <ReactPaginate
+                    breakLabel="..."
+                    onPageChange={(nextPage) => handleChangePage(nextPage.selected + 1)}
+                    pageCount={pollsMeta.last_page}
+                    forcePage={pollsMeta.current_page - 1}
+                    activeClassName="active"
+                    pageRangeDisplayed="2"
+                    marginPagesDisplayed="1"
+                  />
+                </S.Paginate>
+              )}
             </S.HrList>
           ) : (
             <>Немає опитувань</>

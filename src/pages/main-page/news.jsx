@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Link } from 'react-router-dom';
 import { placeholder } from 'src/assets/images/';
 
-import * as S from '../styles';
+import * as S from './styles';
 
 const News = () => {
   const matches600 = useMediaQuery('(max-width:600px)');

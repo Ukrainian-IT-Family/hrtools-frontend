@@ -264,3 +264,37 @@ export const AnswersTableAvatar = styled.div`
     object-fit: cover;
   }
 `;
+
+export const Paginate = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0 5px;
+    }
+    .next,
+    .previous {
+      display: none;
+    }
+    a {
+      background: #73c41d;
+      border-radius: 6px;
+      color: #fff !important;
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      padding: 8px 16px;
+    }
+    li.active a {
+      background: rgb(80, 137, 20);
+    }
+  }
+`;

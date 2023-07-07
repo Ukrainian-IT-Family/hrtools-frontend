@@ -42,6 +42,7 @@ const validationSchema = Yup.object({
     .min(2, 'Мінімум 2 символи')
     .max(50, 'Максимуму 50 символів')
     .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, "Будь-ласка, введіть коректне ім'я"),
+  birthday: Yup.string('').required("Це обов'язкове поле"),
   middleName: Yup.string('')
 
     .min(2, 'Мінімум 2 символи')
@@ -116,6 +117,7 @@ const UserEdit = ({ userId }) => {
 
   const userInfoFiltered = {
     ...userInfo,
+    birthday: userInfo.birthday || '',
     gender: userInfo.gender || 0,
     maritalStatus: userInfo.maritalStatus || 0,
     contactsPhones: userInfo.contactsPhones,
@@ -148,7 +150,7 @@ const UserEdit = ({ userId }) => {
     });
     formik.setFieldValue('workers', workersArr);
   };
-
+  console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit} id="form">
       <FormikProvider value={formik}>
@@ -212,6 +214,8 @@ const UserEdit = ({ userId }) => {
                         clearButton={false}
                         value={formik.values.birthday ? formik.values.birthday : ''}
                         setFieldValue={formik.setFieldValue}
+                        error={formik.touched.birthday && Boolean(formik.errors.birthday)}
+                        helperText={formik.touched.birthday && formik.errors.birthday}
                       />
                     </Grid>
                     <Grid item xs={12} sm={4}>

@@ -6,6 +6,7 @@ const pollSlice = createSlice({
   name: 'poll',
   initialState: {
     polls: [],
+    pollsMeta: null,
     viewPoll: null,
     detailPoll: null,
     questionType: null,
@@ -41,8 +42,9 @@ const pollSlice = createSlice({
         state.waiter = true;
       })
       .addCase(pollActions.getPollsHr.fulfilled, (state, action) => {
-        state.waiter = false;
         state.polls = action.payload.data.data;
+        state.pollsMeta = action.payload.data.meta;
+        state.waiter = false;
       })
       .addCase(pollActions.getPollsHr.rejected, (state) => {
         state.waiter = false;
@@ -54,7 +56,6 @@ const pollSlice = createSlice({
         state.waiter = true;
       })
       .addCase(pollActions.getPollsAdmin.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.waiter = false;
         state.polls = action.payload.data.data;
       })
@@ -176,7 +177,7 @@ const pollSlice = createSlice({
       .addCase(pollActions.sendPoll.fulfilled, (state, action) => {
         const newPoll = action.payload.data.data;
         state.fixWaiter = false;
-        console.log(action);
+
         state.polls = state.polls.map((item) => {
           if (item.id === newPoll.id) {
             return newPoll;
@@ -185,9 +186,8 @@ const pollSlice = createSlice({
         });
         state.detailPoll = newPoll;
       })
-      .addCase(pollActions.sendPoll.rejected, (state, action) => {
+      .addCase(pollActions.sendPoll.rejected, (state) => {
         state.fixWaiter = false;
-        console.log(action);
       })
 
       // edit Poll
@@ -196,7 +196,7 @@ const pollSlice = createSlice({
       })
       .addCase(pollActions.editPoll.fulfilled, (state, action) => {
         const newPoll = action.payload.data.data;
-        console.log(newPoll);
+
         state.fixWaiter = false;
         state.polls = state.polls.map((poll) => {
           if (poll.id === newPoll.id) {

@@ -45,8 +45,6 @@ export const logoutUser = createAsyncThunk('auth/logout', async (data, { rejectW
 
     const result = await authService.logout(data, headers);
 
-    localStorage.clear();
-
     return result;
   } catch (error) {
     return rejectWithValue(error.response.data);

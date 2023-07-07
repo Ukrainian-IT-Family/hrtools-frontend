@@ -11,7 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
 
-import * as S from '../styles';
+import * as S from './styles';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -24,7 +24,7 @@ const rows = [
   createData('status', 'Опитування 4', '12.07.2022', 'активне', 'link'),
   createData('status', 'Опитування 5', '12.07.2022', 'активне', 'link'),
 ];
-const Poll = () => (
+const PollWorker = () => (
   <>
     <S.MainTop>
       <S.MainTopTitle>
@@ -74,4 +74,4 @@ const Poll = () => (
   </>
 );
 
-export default Poll;
+export default PollWorker;

@@ -12,26 +12,26 @@ export const getPollsWorker = async () => {
   return result;
 };
 
-export const getPollsHr = async () => {
+export const getPollsHr = async (data) => {
   const token = localStorage.getItem('userToken');
   const headers = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const result = await api.get(`hr/polls`, headers);
+  const result = await api.get(`hr/polls?page=${data || 1}`, headers);
 
   return result;
 };
 
-export const getPollsAdmin = async () => {
+export const getPollsAdmin = async (data) => {
   const token = localStorage.getItem('userToken');
   const headers = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const result = await api.get(`admin/polls`, headers);
+  const result = await api.get(`admin/polls?page=${data || 1}`, headers);
 
   return result;
 };
