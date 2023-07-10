@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
-import { Header, Sidebar, WorkerPolls } from 'src/components';
+import { Header, HrAdminPoll, Sidebar, WorkerPolls } from 'src/components';
 import * as GS from 'src/global-styles';
 
-import News from './news';
 import * as S from './styles';
 
 const mainPage = () => {
@@ -18,9 +17,8 @@ const mainPage = () => {
           </GS.MainLeft>
           <GS.MainRight>
             <S.MainRightBlock>
-              <News />
+              {role === 2 ? <WorkerPolls isMain /> : <HrAdminPoll isMain />}
             </S.MainRightBlock>
-            <S.MainRightBlock>{role === 2 ? <WorkerPolls isMain /> : ''}</S.MainRightBlock>
           </GS.MainRight>
         </GS.Main>
       </GS.Wrap>

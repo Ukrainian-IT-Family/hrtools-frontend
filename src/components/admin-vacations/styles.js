@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const Title = styled.div`
   font-size: 24px;
@@ -298,6 +299,46 @@ export const Paginate = styled.div`
     }
     .break {
       pointer-events: none;
+    }
+  }
+`;
+export const MainTop = styled.div`
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const MainTopTitle = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  svg {
+    margin-right: 10px;
+  }
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+`;
+
+export const MainTopLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  svg {
+    margin-left: 15px;
+    transition: 0.3s all;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  &:hover svg {
+    transform: translateX(2px);
+  }
+  @media (max-width: 600px) {
+    font-size: 14px;
+    svg {
+      margin-left: 5px;
     }
   }
 `;

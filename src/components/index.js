@@ -1,7 +1,9 @@
+export { default as AdminVacations } from './admin-vacations';
 export { default as MyDataPicker } from './datapicker';
 export { default as FieldMask } from './field-mask';
 export { default as FixLoader } from './fix-loader';
 export { default as Header } from './header';
+export { default as HrAdminPoll } from './hr-admin-polls';
 export { default as Loader } from './loader';
 export { default as Logo } from './logo';
 export { default as MyModal } from './my-modal';

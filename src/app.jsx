@@ -2,7 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { FixLoader, ProtectedRoute } from 'src/components';
-import { Auth, MainPage, NotFound, Personal, Poll, RolePage, UsersList } from 'src/pages';
+import {
+  Auth,
+  MainPage,
+  NotFound,
+  Personal,
+  Poll,
+  RolePage,
+  UsersList,
+  Vocations,
+} from 'src/pages';
 import { authActions } from 'src/store/actions';
 
 const App = () => {
@@ -35,6 +44,7 @@ const App = () => {
                 {ifHasRole === 1 && <Route path="users-list/*" element={<UsersList />} />}
 
                 <Route path="poll" element={<Poll />} />
+                <Route path="vacation" element={<Vocations />} />
               </>
             ) : (
               <Route path="/" element={<RolePage />} />

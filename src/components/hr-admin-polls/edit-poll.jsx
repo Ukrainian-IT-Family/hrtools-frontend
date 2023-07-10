@@ -24,9 +24,9 @@ import { pollActions } from 'src/store/actions';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 
-import * as S from '../styles';
+import * as S from './styles';
 
-const CreatePoll = ({ handleClose, handleOpen }) => {
+const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId }) => {
   const fixWaiter = useSelector((state) => state.pollReducer.fixWaiter);
   const typeWaiter = useSelector((state) => state.pollReducer.typeWaiter);
   const questionType = useSelector((state) => state.pollReducer.questionType);
@@ -34,11 +34,9 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
   const [formSubmit, setFormSubmit] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmit = async (data) => {
-    await dispatch(pollActions.createPoll({ data, role }));
-
-    setFormSubmit(true);
-  };
+  const [openModalHandle, setOpenModalHandle] = useState(false);
+  const handleOpenHandle = () => setOpenModalHandle(true);
+  const handleCloseHandle = () => setOpenModalHandle(false);
 
   const validationSchema = Yup.object({
     title: Yup.string('')
@@ -56,35 +54,37 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
             value: Yup.string()
               .required("Це обов'язкове поле")
               .min(1, 'Мінімум 1 символ')
-              .max(50, 'Максимуму 50 символів'),
+              .max(50, 'Максимуму 50 символів')
+              .nullable(),
           }),
         ),
       }),
     ),
   });
 
+  const initValue = {
+    title,
+    anonymous,
+    questions: questions.map((item) => ({
+      ...item,
+      id: uuidv4(),
+      answers: item.answers.map((answer) => ({
+        ...answer,
+        id: uuidv4(),
+        value: answer.value === null ? '  ' : answer.value,
+      })),
+    })),
+  };
+
+  const handleSubmit = () => {
+    handleOpenHandle();
+  };
+
   const formik = useFormik({
-    initialValues: {
-      title: '',
-      anonymous: false,
-      questions: [
-        {
-          id: uuidv4(),
-          name: '',
-          type: 1,
-          required: false,
-          answers: [
-            {
-              id: uuidv4(),
-              value: '',
-            },
-          ],
-        },
-      ],
-    },
+    initialValues: initValue,
     validationSchema,
-    onSubmit: (values) => {
-      handleSubmit(values);
+    onSubmit: () => {
+      handleSubmit();
     },
   });
 
@@ -106,18 +106,26 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
     formik.setFieldValue('questions', questionsCopy);
   };
 
+  const editPoll = async () => {
+    const data = formik.values;
+    await dispatch(pollActions.editPoll({ data, role, pollId }));
+
+    setFormSubmit(true);
+  };
+
   return (
     <>
       {fixWaiter && <FixLoader />}
-      <form onSubmit={formik.handleSubmit} id="form">
+      <form onSubmit={formik.handleSubmit} id="editPollModal">
         <FormikProvider value={formik}>
-          <S.PollTitle>Cтворити опитування</S.PollTitle>
+          <S.PollTitle>Редагувати опитування</S.PollTitle>
           <Grid container rowSpacing={2} columnSpacing={5}>
             <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 name="title"
                 label="Назва опитування"
+                value={formik.values.title}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.title && Boolean(formik.errors.title)}
@@ -348,7 +356,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
         </FormikProvider>
         <Stack justifyContent="flex-end" direction="row" mt={2}>
           <Button type="submit" variant="contained">
-            Створити
+            Редагувати
           </Button>
         </Stack>
       </form>
@@ -356,10 +364,37 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
       <MyModal isOpen={formSubmit} handleOpen={handleOpen} handleClose={handleClose} width={400}>
         {formSubmit && (
           <>
-            <S.QaModalTitle>Опитування створенно!</S.QaModalTitle>
+            <S.QaModalTitle>Зміни збережено!</S.QaModalTitle>
             <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
               <Button variant="contained" onClick={handleClose}>
                 Ок
+              </Button>
+            </Stack>
+          </>
+        )}
+      </MyModal>
+
+      <MyModal
+        isOpen={openModalHandle}
+        handleOpen={handleOpenHandle}
+        handleClose={handleCloseHandle}
+        width={400}
+      >
+        {openModalHandle && (
+          <>
+            <S.QaModalTitle>Ви дійсно бажаєте внести зміни?</S.QaModalTitle>
+            <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
+              <Button variant="contained" onClick={handleCloseHandle}>
+                Ні
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  editPoll();
+                  handleCloseHandle();
+                }}
+              >
+                Так
               </Button>
             </Stack>
           </>
@@ -369,8 +404,12 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
   );
 };
 
-CreatePoll.propTypes = {
+EditPoll.propTypes = {
   handleOpen: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  anonymous: PropTypes.bool.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  pollId: PropTypes.number.isRequired,
 };
-export default CreatePoll;
+export default EditPoll;

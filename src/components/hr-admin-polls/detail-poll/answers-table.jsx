@@ -9,7 +9,7 @@ import {
 } from '@mui/material/';
 import { useSelector } from 'react-redux';
 
-import * as S from '../../styles';
+import * as S from '../styles';
 
 const AnswersTable = () => {
   const { questions, results, anonymous } = useSelector((state) => state.pollReducer.detailPoll);

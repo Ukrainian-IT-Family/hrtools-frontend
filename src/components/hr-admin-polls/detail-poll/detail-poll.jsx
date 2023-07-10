@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FixLoader, Loader, MyModal } from 'src/components';
 import { pollActions } from 'src/store/actions';
 
-import * as S from '../../styles';
 import EditPoll from '../edit-poll';
+import * as S from '../styles';
 import AnswersTable from './answers-table';
 import WorkerListPoll from './worker-list-poll';
 

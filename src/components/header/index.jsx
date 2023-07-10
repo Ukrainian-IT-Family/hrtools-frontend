@@ -18,7 +18,8 @@ const Header = ({ pageName }) => {
 
   const handleLogout = async () => {
     await dispatch(authActions.logoutUser());
-    localStorage.clear();
+    window.localStorage.clear();
+    window.location = '/';
   };
 
   useEffect(() => {

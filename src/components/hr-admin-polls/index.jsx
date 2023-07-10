@@ -1,14 +1,15 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
+import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader, MyModal } from 'src/components';
 import { pollActions } from 'src/store/actions';
 
-import * as S from '../styles';
 import CreatePoll from './create-poll';
 import DetailPoll from './detail-poll/detail-poll';
+import * as S from './styles';
 
 function getStatusTitle(statusId) {
   switch (statusId) {
@@ -23,7 +24,7 @@ function getStatusTitle(statusId) {
   }
 }
 
-const HrAdminPoll = () => {
+const HrAdminPoll = ({ isMain }) => {
   const waiter = useSelector((state) => state.pollReducer.waiter);
   const polls = useSelector((state) => state.pollReducer.polls);
   const pollsMeta = useSelector((state) => state.pollReducer.pollsMeta);
@@ -64,6 +65,7 @@ const HrAdminPoll = () => {
           Cтворити опитування
         </Button>
       </S.Title>
+
       {!waiter ? (
         <>
           {polls && polls.length ? (
@@ -100,7 +102,7 @@ const HrAdminPoll = () => {
                   </S.HrWrap>
                 </S.HrRow>
               ))}
-              {pollsMeta.total > 0 && (
+              {pollsMeta.total > 0 && !isMain && (
                 <S.Paginate>
                   <ReactPaginate
                     breakLabel="..."
@@ -144,5 +146,7 @@ const HrAdminPoll = () => {
     </>
   );
 };
-
+HrAdminPoll.propTypes = {
+  isMain: PropTypes.bool.isRequired,
+};
 export default HrAdminPoll;

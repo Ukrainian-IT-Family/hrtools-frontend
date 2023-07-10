@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { adminReducer, authReducer, pollReducer } from './reducers';
+import { adminReducer, authReducer, pollReducer, vacationsReducer } from './reducers';
 
 export const store = configureStore({
   reducer: {
     authReducer,
     adminReducer,
     pollReducer,
+    vacationsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
