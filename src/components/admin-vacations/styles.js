@@ -99,7 +99,6 @@ export const HrCol = styled.div`
 export const HrColInfo = styled.div`
   color: grey;
   font-size: 14px;
-  text-align: center;
 `;
 export const HrColInfoItem = styled.div`
   margin-bottom: 5px;
@@ -341,4 +340,60 @@ export const MainTopLink = styled(Link)`
       margin-left: 5px;
     }
   }
+`;
+
+export const Vac = styled.div`
+  margin-bottom: 25px;
+`;
+
+export const VacTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const VacItem = styled.div`
+  margin: 0 15px;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+`;
+
+export const VacLabel = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 15px;
+`;
+
+export const VacWorker = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const VacWorkerAvatar = styled.div`
+  display: block;
+  margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-image: url(${(props) => props.src});
+  background-size: cover;
+  background-position: center;
+`;
+
+export const VacWorkerName = styled.div``;
+
+export const VacType = styled.div`
+  color: #73c41d;
+  text-align: center;
+  font-weight: bold;
+`;
+
+export const VacData = styled.div`
+  text-align: center;
+  color: grey;
+  font-weight: bold;
 `;

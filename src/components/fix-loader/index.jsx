@@ -1,5 +1,3 @@
-import * as GS from 'src/global-styles';
-
 import * as S from './styles';
 
 const FixLoader = () => (

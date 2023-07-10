@@ -2,6 +2,7 @@ import { PropTypes } from 'prop-types';
 import { useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
+import { avatarDefault } from 'src/assets/images';
 import { Loader } from 'src/components';
 import { vacationsActions } from 'src/store/actions';
 
@@ -26,51 +27,54 @@ const AdminVacations = ({ isMain }) => {
     }
   };
 
-  function getStatusTitle(statusId) {
-    switch (statusId) {
+  function getPosition(userRole) {
+    switch (userRole) {
       case 1:
-        return 'Нове';
+        return 'Адмін';
       case 2:
-        return 'Активне';
+        return 'Працівник';
       case 3:
-        return 'Завершене';
+        return 'Hr manager';
       default:
-        return 'Нове';
+        return 'Адмін';
     }
   }
 
   return (
     <>
-      <S.Title>Усі запити</S.Title>
+      <S.Title>Запити працівників</S.Title>
 
       {!waiter ? (
         <>
           {vacations && vacations.length ? (
             <S.HrList>
               {vacations.map((item) => (
-                <S.HrRow key={item.id}>
-                  <S.HrName>{item.title}</S.HrName>
-                  <S.HrWrap>
-                    <S.HrCol>
-                      <S.HrColInfo>
-                        {item.date && <S.HrColInfoItem>Створенно: {item.date}</S.HrColInfoItem>}
-                        {!item.anonymous ? (
-                          <S.HrColInfoItem>Автор: {item.author.fullName}</S.HrColInfoItem>
-                        ) : (
-                          <S.HrColInfoItem>Анонімне</S.HrColInfoItem>
-                        )}
-                      </S.HrColInfo>
-                    </S.HrCol>
-                    <S.HrCol>
-                      <S.HrStatus>{getStatusTitle(item.status)}</S.HrStatus>
-                    </S.HrCol>
-                    <S.HrCol>
-                      <S.HrStatusCount>
-                        {item.resultCount}/{item.workersCount}
-                      </S.HrStatusCount>
-                    </S.HrCol>
-                  </S.HrWrap>
-                </S.HrRow>
+                <S.Vac id={item.id}>
+                  <S.VacTop>
+                    <S.VacItem>
+                      <S.VacLabel>Працівник</S.VacLabel>
+                      <S.VacWorker>
+                        <S.VacWorkerAvatar src={item.user.avatar || avatarDefault} />
+                        <S.VacWorkerName>
+                          {item.user.fullName}
+                          <div>{getPosition(item.user.role)}</div>
+                        </S.VacWorkerName>
+                      </S.VacWorker>
+                    </S.VacItem>
+                    <S.VacItem>
+                      <S.VacLabel>Дата/тип</S.VacLabel>
+                      <S.VacType>{item.type}</S.VacType>
+                      <S.VacData>
+                        {item.dateStart} - {item.dateEnd}
+                      </S.VacData>
+                    </S.VacItem>
+                    <S.VacItem>
+                      <S.VacLabel>Кількість днів</S.VacLabel>
+
+                      <S.VacData>{item.daysCount}</S.VacData>
+                    </S.VacItem>
+                  </S.VacTop>
+                </S.Vac>
               ))}
               {vacationsMeta.total > 0 && !isMain && (
                 <S.Paginate>

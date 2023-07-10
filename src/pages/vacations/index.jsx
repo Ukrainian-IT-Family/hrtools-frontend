@@ -13,7 +13,7 @@ const Vacations = () => {
           <GS.MainLeft>
             <Sidebar />
           </GS.MainLeft>
-          <GS.MainRight>{!role === 2 && <AdminVacations isMain={false} />}</GS.MainRight>
+          <GS.MainRight>{role !== 2 && <AdminVacations isMain={false} />}</GS.MainRight>
         </GS.Main>
       </GS.Wrap>
     </GS.MainWrap>
