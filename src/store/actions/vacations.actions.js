@@ -26,3 +26,29 @@ export const getVacationsHr = createAsyncThunk(
     }
   },
 );
+
+export const acceptVacationAdmin = createAsyncThunk(
+  'admin/acceptVacationAdmin',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await vacationsService.acceptVacationAdmin(data);
+
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const cancelVacationAdmin = createAsyncThunk(
+  'admin/cancelVacationAdmin',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await vacationsService.cancelVacationAdmin(data);
+
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);

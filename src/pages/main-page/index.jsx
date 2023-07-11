@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Header, HrAdminPoll, Sidebar, WorkerPolls } from 'src/components';
+import { AdminVacations, Header, HrAdminPoll, Sidebar, WorkerPolls } from 'src/components';
 import * as GS from 'src/global-styles';
 
 import * as S from './styles';
@@ -19,6 +19,11 @@ const mainPage = () => {
             <S.MainRightBlock>
               {role === 2 ? <WorkerPolls isMain /> : <HrAdminPoll isMain />}
             </S.MainRightBlock>
+            {role === 1 && (
+              <S.MainRightBlock>
+                <AdminVacations isMain />
+              </S.MainRightBlock>
+            )}
           </GS.MainRight>
         </GS.Main>
       </GS.Wrap>

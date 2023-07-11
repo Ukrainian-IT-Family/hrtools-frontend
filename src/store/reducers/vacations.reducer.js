@@ -42,6 +42,40 @@ const vacationsSlice = createSlice({
       })
       .addCase(vacationsActions.getVacationsHr.rejected, (state) => {
         state.waiter = false;
+      })
+
+      // acceptVacationAdmin
+      .addCase(vacationsActions.acceptVacationAdmin.pending, (state) => {
+        state.fixWaiter = true;
+      })
+      .addCase(vacationsActions.acceptVacationAdmin.fulfilled, (state, action) => {
+        state.vacations = state.vacations.map((item) => {
+          if (item.id === action.meta.arg) {
+            return action.payload.data.data;
+          }
+          return item;
+        });
+        state.fixWaiter = false;
+      })
+      .addCase(vacationsActions.acceptVacationAdmin.rejected, (state) => {
+        state.fixWaiter = false;
+      })
+
+      // cancelVacationAdmin
+      .addCase(vacationsActions.cancelVacationAdmin.pending, (state) => {
+        state.fixWaiter = true;
+      })
+      .addCase(vacationsActions.cancelVacationAdmin.fulfilled, (state, action) => {
+        state.vacations = state.vacations.map((item) => {
+          if (item.id === action.meta.arg) {
+            return action.payload.data.data;
+          }
+          return item;
+        });
+        state.fixWaiter = false;
+      })
+      .addCase(vacationsActions.cancelVacationAdmin.rejected, (state) => {
+        state.fixWaiter = false;
       });
   },
 });

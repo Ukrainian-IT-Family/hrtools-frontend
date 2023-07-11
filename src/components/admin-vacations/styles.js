@@ -312,7 +312,6 @@ export const MainTopTitle = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
-  font-weight: bold;
   svg {
     margin-right: 10px;
   }
@@ -344,6 +343,11 @@ export const MainTopLink = styled(Link)`
 
 export const Vac = styled.div`
   margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid grey;
+  &:last-of-type {
+    border-bottom: 0;
+  }
 `;
 
 export const VacTop = styled.div`
@@ -353,10 +357,13 @@ export const VacTop = styled.div`
 
 export const VacItem = styled.div`
   margin: 0 15px;
-  &:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  &:first-of-type {
     margin-left: 0;
   }
-  &:last-child {
+  &:last-of-type {
     margin-right: 0;
   }
 `;
@@ -375,17 +382,22 @@ export const VacWorker = styled.div`
 
 export const VacWorkerAvatar = styled.div`
   display: block;
-  margin-right: 15px;
-  width: 50px;
-  height: 50px;
+  margin-right: 10px;
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
   border-radius: 100%;
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: center;
 `;
 
-export const VacWorkerName = styled.div``;
-
+export const VacWorkerName = styled.div`
+  font-size: 12px;
+`;
+export const VacWorkerPosition = styled.div`
+  font-weight: bold;
+`;
 export const VacType = styled.div`
   color: #73c41d;
   text-align: center;
@@ -396,4 +408,21 @@ export const VacData = styled.div`
   text-align: center;
   color: grey;
   font-weight: bold;
+`;
+
+export const VacComment = styled.div`
+  width: 100%;
+  margin-top: 10px;
+  mix-blend-mode: 10px;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid grey;
+`;
+
+export const VacBtns = styled.div`
+  display: flex;
+  margin-top: 15px;
+  button {
+    margin-right: 15px;
+  }
 `;

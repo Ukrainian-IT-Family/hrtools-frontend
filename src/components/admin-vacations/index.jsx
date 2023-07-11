@@ -1,17 +1,54 @@
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Button } from '@mui/material';
 import { PropTypes } from 'prop-types';
 import { useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { avatarDefault } from 'src/assets/images';
-import { Loader } from 'src/components';
+import { FixLoader, Loader } from 'src/components';
 import { vacationsActions } from 'src/store/actions';
 
 import * as S from './styles';
 
+function getPosition(userRole) {
+  switch (userRole) {
+    case 1:
+      return 'Адмін';
+    case 2:
+      return 'Працівник';
+    case 3:
+      return 'Hr manager';
+    default:
+      return 'Адмін';
+  }
+}
+
+function getStatus(status) {
+  switch (status) {
+    case 0:
+      return 'Відхиленно';
+    case 1:
+      return 'Схваленно';
+    default:
+      return 'На розгляді';
+  }
+}
+
+function getType(type) {
+  switch (type) {
+    case 0:
+      return 'Відпустка';
+    case 1:
+      return 'Лікарнянний';
+    default:
+      return 'Відпустка';
+  }
+}
 const AdminVacations = ({ isMain }) => {
   const dispatch = useDispatch();
   const role = useSelector((state) => state.authReducer.user.role);
   const waiter = useSelector((state) => state.vacationsReducer.waiter);
+  const fixWaiter = useSelector((state) => state.vacationsReducer.fixWaiter);
   const vacations = useSelector((state) => state.vacationsReducer.vacations);
   const vacationsMeta = useSelector((state) => state.vacationsReducer.vacationsMeta);
 
@@ -27,29 +64,35 @@ const AdminVacations = ({ isMain }) => {
     }
   };
 
-  function getPosition(userRole) {
-    switch (userRole) {
-      case 1:
-        return 'Адмін';
-      case 2:
-        return 'Працівник';
-      case 3:
-        return 'Hr manager';
-      default:
-        return 'Адмін';
-    }
-  }
+  const handleAccept = (id) => {
+    dispatch(vacationsActions.acceptVacationAdmin(id));
+  };
+
+  const handleCancel = (id) => {
+    dispatch(vacationsActions.cancelVacationAdmin(id));
+  };
 
   return (
     <>
-      <S.Title>Запити працівників</S.Title>
+      {fixWaiter && <FixLoader />}
 
+      {isMain ? (
+        <S.MainTop>
+          <S.MainTopTitle>Мої опитування</S.MainTopTitle>
+          <S.MainTopLink to="vacation">
+            Дивитися всі
+            <ArrowForwardIcon />
+          </S.MainTopLink>
+        </S.MainTop>
+      ) : (
+        <S.Title>Запити працівників</S.Title>
+      )}
       {!waiter ? (
         <>
           {vacations && vacations.length ? (
             <S.HrList>
               {vacations.map((item) => (
-                <S.Vac id={item.id}>
+                <S.Vac key={item.id}>
                   <S.VacTop>
                     <S.VacItem>
                       <S.VacLabel>Працівник</S.VacLabel>
@@ -57,23 +100,42 @@ const AdminVacations = ({ isMain }) => {
                         <S.VacWorkerAvatar src={item.user.avatar || avatarDefault} />
                         <S.VacWorkerName>
                           {item.user.fullName}
-                          <div>{getPosition(item.user.role)}</div>
+                          <S.VacWorkerPosition>{getPosition(item.user.role)}</S.VacWorkerPosition>
                         </S.VacWorkerName>
                       </S.VacWorker>
                     </S.VacItem>
                     <S.VacItem>
                       <S.VacLabel>Дата/тип</S.VacLabel>
-                      <S.VacType>{item.type}</S.VacType>
+                      <S.VacType>{getType(item.type)}</S.VacType>
                       <S.VacData>
                         {item.dateStart} - {item.dateEnd}
                       </S.VacData>
                     </S.VacItem>
                     <S.VacItem>
                       <S.VacLabel>Кількість днів</S.VacLabel>
-
                       <S.VacData>{item.daysCount}</S.VacData>
                     </S.VacItem>
+                    <S.VacItem>
+                      <S.VacLabel>Дата запиту</S.VacLabel>
+                      <S.VacData>{getStatus(item.status)}</S.VacData>
+                    </S.VacItem>
                   </S.VacTop>
+                  {item.comment && <S.VacComment>{item.comment}</S.VacComment>}
+                  {item.status === null && (
+                    <S.VacBtns>
+                      <Button variant="contained" onClick={() => handleAccept(item.id)}>
+                        Затвердити
+                      </Button>
+
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => handleCancel(item.id)}
+                      >
+                        Відхилити
+                      </Button>
+                    </S.VacBtns>
+                  )}
                 </S.Vac>
               ))}
               {vacationsMeta.total > 0 && !isMain && (
