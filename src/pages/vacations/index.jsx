@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
-import { AdminVacations, Header, HrVacations, Sidebar } from 'src/components';
+import { AdminVacations, Header, HrVacations, MyVacations, Sidebar } from 'src/components';
 import * as GS from 'src/global-styles';
+
+import * as S from './styles';
 
 const Vacations = () => {
   const role = useSelector((state) => state.authReducer.user.role);
@@ -14,8 +16,21 @@ const Vacations = () => {
             <Sidebar />
           </GS.MainLeft>
           <GS.MainRight>
-            {role !== 2 && <AdminVacations isMain={false} />}
-            {role !== 3 && <HrVacations isMain={false} />}
+            {role === 1 && (
+              <S.MainRightBlock>
+                <AdminVacations isMain={false} />
+              </S.MainRightBlock>
+            )}
+            {role === 3 && (
+              <>
+                <S.MainRightBlock>
+                  <MyVacations />
+                </S.MainRightBlock>
+                <S.MainRightBlock>
+                  <HrVacations isMain={false} />
+                </S.MainRightBlock>
+              </>
+            )}
           </GS.MainRight>
         </GS.Main>
       </GS.Wrap>
