@@ -44,7 +44,7 @@ function getType(type) {
       return 'Відпустка';
   }
 }
-const AdminVacations = ({ isMain }) => {
+const HrVacations = ({ isMain }) => {
   const dispatch = useDispatch();
   const waiter = useSelector((state) => state.vacationsReducer.waiter);
   const fixWaiter = useSelector((state) => state.vacationsReducer.fixWaiter);
@@ -52,19 +52,19 @@ const AdminVacations = ({ isMain }) => {
   const vacationsMeta = useSelector((state) => state.vacationsReducer.vacationsMeta);
 
   useEffect(() => {
-    dispatch(vacationsActions.getVacationsAdmin(1));
+    dispatch(vacationsActions.getVacationsHr(1));
   }, []);
 
   const handleChangePage = (page) => {
-    dispatch(vacationsActions.getVacationsAdmin(page));
+    dispatch(vacationsActions.getVacationsHr(page));
   };
 
   const handleAccept = (id) => {
-    dispatch(vacationsActions.acceptVacationAdmin(id));
+    dispatch(vacationsActions.acceptVacationHr(id));
   };
 
   const handleCancel = (id) => {
-    dispatch(vacationsActions.cancelVacationAdmin(id));
+    dispatch(vacationsActions.cancelVacationHr(id));
   };
 
   return (
@@ -157,7 +157,7 @@ const AdminVacations = ({ isMain }) => {
     </>
   );
 };
-AdminVacations.propTypes = {
+HrVacations.propTypes = {
   isMain: PropTypes.bool.isRequired,
 };
-export default AdminVacations;
+export default HrVacations;
