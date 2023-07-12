@@ -1,10 +1,12 @@
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { FixLoader, Loader } from 'src/components';
+import { FixLoader, Loader, MyModal } from 'src/components';
 import { vacationsActions } from 'src/store/actions';
 
+import DeleteVac from './delete-vac';
 import * as S from './styles';
 
 function getStatus(status) {
@@ -30,26 +32,23 @@ function getType(type) {
 }
 const MyVacations = () => {
   const dispatch = useDispatch();
-  const waiter = useSelector((state) => state.vacationsReducer.waiter);
+  const waiter = useSelector((state) => state.vacationsReducer.myVacationWaiter);
   const fixWaiter = useSelector((state) => state.vacationsReducer.fixWaiter);
-  const vacations = useSelector((state) => state.vacationsReducer.vacations);
-  const vacationsMeta = useSelector((state) => state.vacationsReducer.vacationsMeta);
+  const myVacations = useSelector((state) => state.vacationsReducer.myVacations);
+  const myVacationsMeta = useSelector((state) => state.vacationsReducer.myVacationsMeta);
 
   useEffect(() => {
-    dispatch(vacationsActions.getVacationsHr(1));
+    dispatch(vacationsActions.myVacation(1));
   }, []);
 
   const handleChangePage = (page) => {
-    dispatch(vacationsActions.getVacationsHr(page));
+    dispatch(vacationsActions.myVacation(page));
   };
 
-  const handleAccept = (id) => {
-    dispatch(vacationsActions.acceptVacationHr(id));
-  };
-
-  const handleCancel = (id) => {
-    dispatch(vacationsActions.cancelVacationHr(id));
-  };
+  const [deleteId, setDeleteId] = useState(0);
+  const [openDelete, setOpenDelete] = useState(false);
+  const handleOpenDelete = () => setOpenDelete(true);
+  const handleCloseDelete = () => setOpenDelete(false);
 
   return (
     <>
@@ -58,9 +57,9 @@ const MyVacations = () => {
       <S.Title>Мої запити</S.Title>
       {!waiter ? (
         <>
-          {vacations && vacations.length ? (
+          {myVacations && myVacations.length ? (
             <S.HrList>
-              {vacations.map((item) => (
+              {myVacations.map((item) => (
                 <S.Vac key={item.id}>
                   <S.VacTop>
                     <S.VacItem>
@@ -78,32 +77,29 @@ const MyVacations = () => {
                       <S.VacLabel>Дата запиту</S.VacLabel>
                       <S.VacData>{getStatus(item.status)}</S.VacData>
                     </S.VacItem>
+                    <S.VacItem>
+                      <S.VacLabel>Операції</S.VacLabel>
+                      <Button
+                        color="error"
+                        onClick={() => {
+                          setDeleteId(item.id);
+                          handleOpenDelete();
+                        }}
+                      >
+                        <DeleteIcon />
+                      </Button>
+                    </S.VacItem>
                   </S.VacTop>
                   {item.comment && <S.VacComment>{item.comment}</S.VacComment>}
-                  {item.status === null && (
-                    <S.VacBtns>
-                      <Button variant="contained" onClick={() => handleAccept(item.id)}>
-                        Затвердити
-                      </Button>
-
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => handleCancel(item.id)}
-                      >
-                        Відхилити
-                      </Button>
-                    </S.VacBtns>
-                  )}
                 </S.Vac>
               ))}
-              {vacationsMeta.total > 0 && (
+              {myVacationsMeta.total > 0 && myVacationsMeta.last_page > 1 && (
                 <S.Paginate>
                   <ReactPaginate
                     breakLabel="..."
                     onPageChange={(nextPage) => handleChangePage(nextPage.selected + 1)}
-                    pageCount={vacationsMeta.last_page}
-                    forcePage={vacationsMeta.current_page - 1}
+                    pageCount={myVacationsMeta.last_page}
+                    forcePage={myVacationsMeta.current_page - 1}
                     activeClassName="active"
                     pageRangeDisplayed="2"
                     marginPagesDisplayed="1"
@@ -118,6 +114,21 @@ const MyVacations = () => {
       ) : (
         <Loader />
       )}
+
+      <MyModal
+        isOpen={openDelete}
+        handleOpen={handleOpenDelete}
+        handleClose={handleCloseDelete}
+        width={500}
+      >
+        {openDelete && (
+          <DeleteVac
+            deleteId={deleteId}
+            handleClose={handleCloseDelete}
+            handleOpen={handleOpenDelete}
+          />
+        )}
+      </MyModal>
     </>
   );
 };

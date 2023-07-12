@@ -78,3 +78,55 @@ export const cancelVacationHr = createAsyncThunk(
     }
   },
 );
+
+export const myVacation = createAsyncThunk(
+  'admin/myVacation',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await vacationsService.myVacation(data);
+
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const myVacationDelete = createAsyncThunk(
+  'admin/myVacationDelete',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await vacationsService.myVacationDelete(data);
+
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const myVacationCreate = createAsyncThunk(
+  'admin/myVacationCreate',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await vacationsService.myVacationCreate(data);
+
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const myVacationInfo = createAsyncThunk(
+  'admin/myVacationInfo',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await vacationsService.myVacationInfo(data);
+
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);

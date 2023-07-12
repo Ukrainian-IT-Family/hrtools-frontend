@@ -9,6 +9,7 @@ export { default as Loader } from './loader';
 export { default as Logo } from './logo';
 export { default as MyModal } from './my-modal';
 export { default as MyVacations } from './my-vacations';
+export { default as MyVacationsInfo } from './my-vacations-info';
 export { default as ProtectedRoute } from './protected-route';
 export { default as SelectInput } from './select-input';
 export { default as Sidebar } from './sidebar';

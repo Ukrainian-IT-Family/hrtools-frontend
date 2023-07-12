@@ -42,3 +42,6 @@
 .react-datepicker-popper {
   z-index: 99;
 }
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+  background-color: rgb(80, 137, 20);
+}

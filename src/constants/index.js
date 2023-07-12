@@ -86,3 +86,42 @@ export const menuItemsHr = [
   { name: 'Відпустка/Лікарняний', to: 'vacation', id: 4 },
   { name: 'Персональний кабінет', to: 'personal', id: 5 },
 ];
+
+// dataPicker locale
+const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
+const months = {
+  ua: [
+    'Січень',
+    'Лютий',
+    'Березень',
+    'Квітень',
+    'Травень',
+    'Червень',
+    'Липень',
+    'Серпень',
+    'Вересень',
+    'Жовтень',
+    'Листопад',
+    'Грудень',
+  ],
+};
+
+export const localeUa = {
+  localize: {
+    day: (n) => days[n],
+    month: (n) => months.ua[n],
+  },
+  formatLong: {
+    date: () => 'mm/dd/yyyy',
+  },
+};
+
+export const localeRu = {
+  localize: {
+    day: (n) => days[n],
+    month: (n) => months.ru[n],
+  },
+  formatLong: {
+    date: () => 'mm/dd/yyyy',
+  },
+};

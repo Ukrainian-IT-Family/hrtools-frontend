@@ -7,6 +7,11 @@ const vacationsSlice = createSlice({
   initialState: {
     vacations: [],
     vacationsMeta: [],
+    myVacations: [],
+    myVacationsMeta: [],
+    myVacationWaiter: false,
+    myVacationInfo: null,
+    myVacationInfoWaiter: false,
     errors: false,
     waiter: false,
     fixWaiter: false,
@@ -110,6 +115,53 @@ const vacationsSlice = createSlice({
       })
       .addCase(vacationsActions.cancelVacationHr.rejected, (state) => {
         state.fixWaiter = false;
+      })
+
+      // myVacation
+      .addCase(vacationsActions.myVacation.pending, (state) => {
+        state.myVacationWaiter = true;
+      })
+      .addCase(vacationsActions.myVacation.fulfilled, (state, action) => {
+        state.myVacations = action.payload.data.data;
+        state.myVacationsMeta = action.payload.data.meta;
+        state.myVacationWaiter = false;
+      })
+      .addCase(vacationsActions.myVacation.rejected, (state) => {
+        state.myVacationWaiter = false;
+      })
+
+      // myVacationDelete
+      .addCase(vacationsActions.myVacationDelete.pending, (state) => {
+        state.fixWaiter = true;
+      })
+      .addCase(vacationsActions.myVacationDelete.fulfilled, (state) => {
+        state.fixWaiter = false;
+      })
+      .addCase(vacationsActions.myVacationDelete.rejected, (state) => {
+        state.fixWaiter = false;
+      })
+
+      // myVacationCreate
+      .addCase(vacationsActions.myVacationCreate.pending, (state) => {
+        state.fixWaiter = true;
+      })
+      .addCase(vacationsActions.myVacationCreate.fulfilled, (state) => {
+        state.fixWaiter = false;
+      })
+      .addCase(vacationsActions.myVacationCreate.rejected, (state) => {
+        state.fixWaiter = false;
+      })
+
+      // myVacationInfo
+      .addCase(vacationsActions.myVacationInfo.pending, (state) => {
+        state.myVacationInfoWaiter = true;
+      })
+      .addCase(vacationsActions.myVacationInfo.fulfilled, (state, action) => {
+        state.myVacationInfo = action.payload.data.data;
+        state.myVacationInfoWaiter = false;
+      })
+      .addCase(vacationsActions.myVacationInfo.rejected, (state) => {
+        state.myVacationInfoWaiter = false;
       });
   },
 });

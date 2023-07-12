@@ -1,5 +1,12 @@
 import { useSelector } from 'react-redux';
-import { AdminVacations, Header, HrVacations, MyVacations, Sidebar } from 'src/components';
+import {
+  AdminVacations,
+  Header,
+  HrVacations,
+  MyVacations,
+  MyVacationsInfo,
+  Sidebar,
+} from 'src/components';
 import * as GS from 'src/global-styles';
 
 import * as S from './styles';
@@ -23,6 +30,9 @@ const Vacations = () => {
             )}
             {role === 3 && (
               <>
+                <S.MainRightBlock>
+                  <MyVacationsInfo />
+                </S.MainRightBlock>
                 <S.MainRightBlock>
                   <MyVacations />
                 </S.MainRightBlock>

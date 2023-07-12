@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
 
 export const Title = styled.div`
@@ -425,4 +426,31 @@ export const VacBtns = styled.div`
   button {
     margin-right: 15px;
   }
+`;
+
+export const ModalTitle = styled.div`
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  mix-blend-mode: 15px;
+`;
+
+export const ModalRow = styled.div`
+  margin-bottom: 25px;
+  margin-top: 15px;
+`;
+
+export const ModalLabel = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const Picker = styled.div`
+  position: relative;
+`;
+
+export const PickerClear = styled(IconButton)`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
 `;
