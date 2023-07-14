@@ -346,6 +346,7 @@ export const Vac = styled.div`
   margin-bottom: 25px;
   padding-bottom: 15px;
   border-bottom: 1px solid grey;
+
   &:last-of-type {
     border-bottom: 0;
   }
@@ -353,7 +354,8 @@ export const Vac = styled.div`
 
 export const VacTop = styled.div`
   display: flex;
-  justify-content: space-between;
+  overflow: auto;
+  width: 100%;
 `;
 
 export const VacItem = styled.div`
@@ -374,6 +376,9 @@ export const VacLabel = styled.div`
   font-size: 16px;
   text-align: center;
   margin-bottom: 15px;
+  @media (max-width: 575px) {
+    font-size: 14px;
+  }
 `;
 
 export const VacWorker = styled.div`
@@ -403,12 +408,18 @@ export const VacType = styled.div`
   color: #73c41d;
   text-align: center;
   font-weight: bold;
+  @media (max-width: 575px) {
+    font-size: 14px;
+  }
 `;
 
 export const VacData = styled.div`
   text-align: center;
   color: grey;
   font-weight: bold;
+  @media (max-width: 575px) {
+    font-size: 14px;
+  }
 `;
 
 export const VacComment = styled.div`
@@ -418,6 +429,9 @@ export const VacComment = styled.div`
   font-size: 14px;
   padding: 5px;
   border: 1px solid grey;
+  @media (max-width: 575px) {
+    font-size: 12px;
+  }
 `;
 
 export const VacBtns = styled.div`
