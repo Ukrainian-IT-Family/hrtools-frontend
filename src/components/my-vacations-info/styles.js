@@ -21,6 +21,7 @@ export const MainTopTitle = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
+  font-weight: bold;
   svg {
     margin-right: 10px;
   }
@@ -87,7 +88,12 @@ export const VacItem = styled.div`
   padding: 10px 15px;
   border-radius: 20px;
   border: 1px solid grey;
-  margin: 0 15px;
+  margin: 0 15px 15px 15px;
+  @media (max-width: 575px) {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 15px;
+  }
 `;
 
 export const VacItemLabel = styled.div`
@@ -100,7 +106,10 @@ export const VacItemLabel = styled.div`
 export const VacItemText = styled.div`
   text-align: center;
   font-size: 14px;
+  display: flex;
+  justify-content: center;
   span {
     margin: 0 5px;
+    margin-bottom: 5px;
   }
 `;

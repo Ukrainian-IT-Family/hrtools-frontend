@@ -73,14 +73,16 @@ const AdminVacations = ({ isMain }) => {
 
       {isMain ? (
         <S.MainTop>
-          <S.MainTopTitle>Мої опитування</S.MainTopTitle>
+          <S.MainTopTitle>Запити працівників</S.MainTopTitle>
           <S.MainTopLink to="vacation">
             Дивитися всі
             <ArrowForwardIcon />
           </S.MainTopLink>
         </S.MainTop>
       ) : (
-        <S.Title>Запити працівників</S.Title>
+        <S.MainTop>
+          <S.MainTopTitle>Запити працівників</S.MainTopTitle>
+        </S.MainTop>
       )}
       {!waiter ? (
         <>

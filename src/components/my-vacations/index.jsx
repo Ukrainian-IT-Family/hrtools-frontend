@@ -53,8 +53,10 @@ const MyVacations = () => {
   return (
     <>
       {fixWaiter && <FixLoader />}
+      <S.MainTop>
+        <S.MainTopTitle>Мої запити</S.MainTopTitle>
+      </S.MainTop>
 
-      <S.Title>Мої запити</S.Title>
       {!waiter ? (
         <>
           {myVacations && myVacations.length ? (
@@ -79,15 +81,19 @@ const MyVacations = () => {
                     </S.VacItem>
                     <S.VacItem>
                       <S.VacLabel>Операції</S.VacLabel>
-                      <Button
-                        color="error"
-                        onClick={() => {
-                          setDeleteId(item.id);
-                          handleOpenDelete();
-                        }}
-                      >
-                        <DeleteIcon />
-                      </Button>
+                      {item.canDelete ? (
+                        <Button
+                          color="error"
+                          onClick={() => {
+                            setDeleteId(item.id);
+                            handleOpenDelete();
+                          }}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      ) : (
+                        <S.VacData>Не можливо видалити</S.VacData>
+                      )}
                     </S.VacItem>
                   </S.VacTop>
                   {item.comment && <S.VacComment>{item.comment}</S.VacComment>}

@@ -1,4 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Button } from '@mui/material';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
@@ -59,12 +60,22 @@ const HrAdminPoll = ({ isMain }) => {
 
   return (
     <>
-      <S.Title>
-        Всі опитування
-        <Button startIcon={<AddIcon />} onClick={() => handleOpen()}>
-          Cтворити опитування
-        </Button>
-      </S.Title>
+      {isMain ? (
+        <S.MainTop>
+          <S.MainTopTitle>Опитування працівників</S.MainTopTitle>
+          <S.MainTopLink to="poll">
+            Дивитися всі
+            <ArrowForwardIcon />
+          </S.MainTopLink>
+        </S.MainTop>
+      ) : (
+        <S.MainTop>
+          <S.MainTopTitle>Всі опитування</S.MainTopTitle>
+          <Button startIcon={<AddIcon />} onClick={() => handleOpen()}>
+            Cтворити опитування
+          </Button>
+        </S.MainTop>
+      )}
 
       {!waiter ? (
         <>

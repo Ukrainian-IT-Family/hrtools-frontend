@@ -28,6 +28,16 @@ const Vacations = () => {
                 <AdminVacations isMain={false} />
               </S.MainRightBlock>
             )}
+            {role === 2 && (
+              <>
+                <S.MainRightBlock>
+                  <MyVacationsInfo />
+                </S.MainRightBlock>
+                <S.MainRightBlock>
+                  <MyVacations />
+                </S.MainRightBlock>
+              </>
+            )}
             {role === 3 && (
               <>
                 <S.MainRightBlock>

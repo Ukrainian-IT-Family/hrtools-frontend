@@ -22,12 +22,12 @@ const MyVacationsInfo = () => {
 
   return (
     <>
-      <S.Title>
-        Відпустка/лікарняний
+      <S.MainTop>
+        <S.MainTopTitle> Відпустка/лікарняний</S.MainTopTitle>
         <Button startIcon={<AddIcon />} onClick={() => handleOpenCreate()}>
           Cтворити запит
         </Button>
-      </S.Title>
+      </S.MainTop>
       {waiter ? (
         <Loader />
       ) : (

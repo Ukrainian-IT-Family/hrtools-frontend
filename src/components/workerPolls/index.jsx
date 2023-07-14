@@ -1,5 +1,4 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { Button } from '@mui/material';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
@@ -40,17 +39,16 @@ const WorkerPolls = ({ isMain }) => {
     <>
       {isMain ? (
         <S.MainTop>
-          <S.MainTopTitle>
-            <NewspaperIcon />
-            Мої опитування
-          </S.MainTopTitle>
+          <S.MainTopTitle>Мої опитування</S.MainTopTitle>
           <S.MainTopLink to="poll">
             Дивитися всі
             <ArrowForwardIcon />
           </S.MainTopLink>
         </S.MainTop>
       ) : (
-        <S.Title>Всі опитування</S.Title>
+        <S.MainTop>
+          <S.MainTopTitle>Всі опитування</S.MainTopTitle>
+        </S.MainTop>
       )}
 
       {!waiter ? (
