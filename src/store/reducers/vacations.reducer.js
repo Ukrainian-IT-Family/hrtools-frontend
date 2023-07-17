@@ -11,6 +11,7 @@ const vacationsSlice = createSlice({
     myVacationsMeta: [],
     myVacationWaiter: false,
     myVacationInfo: null,
+    myVacationInfoError: false,
     myVacationInfoWaiter: false,
     errors: false,
     waiter: false,
@@ -143,12 +144,15 @@ const vacationsSlice = createSlice({
 
       // myVacationCreate
       .addCase(vacationsActions.myVacationCreate.pending, (state) => {
+        state.myVacationInfoError = false;
         state.fixWaiter = true;
       })
       .addCase(vacationsActions.myVacationCreate.fulfilled, (state) => {
+        state.myVacationInfoError = false;
         state.fixWaiter = false;
       })
-      .addCase(vacationsActions.myVacationCreate.rejected, (state) => {
+      .addCase(vacationsActions.myVacationCreate.rejected, (state, action) => {
+        state.myVacationInfoError = action.payload.error;
         state.fixWaiter = false;
       })
 

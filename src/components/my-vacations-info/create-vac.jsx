@@ -7,6 +7,7 @@ import {
   Stack,
   TextField,
 } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import { useFormik } from 'formik';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
@@ -19,15 +20,18 @@ import { vacationsActions } from 'src/store/actions';
 import * as S from '../my-vacations/styles';
 
 const CreateVac = ({ handleClose }) => {
-  const fixWaiter = useSelector((state) => state.pollReducer.fixWaiter);
+  const fixWaiter = useSelector((state) => state.vacationsReducer.fixWaiter);
   const [formSubmit, setFormSubmit] = useState(false);
   const dispatch = useDispatch();
+  const myVacationInfoError = useSelector((state) => state.vacationsReducer.myVacationInfoError);
 
   const handleSubmit = async (data) => {
-    await dispatch(vacationsActions.myVacationCreate(data));
-    dispatch(vacationsActions.myVacationInfo());
-    dispatch(vacationsActions.myVacation(1));
-    setFormSubmit(true);
+    const res = await dispatch(vacationsActions.myVacationCreate(data));
+    if (res.payload.status === 200) {
+      dispatch(vacationsActions.myVacationInfo());
+      dispatch(vacationsActions.myVacation(1));
+      setFormSubmit(true);
+    }
   };
 
   const formik = useFormik({
@@ -125,6 +129,12 @@ const CreateVac = ({ handleClose }) => {
               locale={localeUa}
             />
           </Stack>
+
+          {myVacationInfoError && (
+            <Stack mt={2} mb={2}>
+              <Alert severity="error">{myVacationInfoError.message}</Alert>
+            </Stack>
+          )}
 
           <Stack mt={2} mb={2} justifyContent="flex-start" direction="row" spacing={2}>
             <Button variant="contained" type="submit">
