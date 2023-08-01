@@ -17,7 +17,7 @@ const mainPage = () => {
 
   return (
     <GS.MainWrap>
-      <Header pageName="Головна" />
+      <Header pageName="Main" />
       <GS.Wrap>
         <GS.Main>
           <GS.MainLeft>

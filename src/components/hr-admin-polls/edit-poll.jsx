@@ -40,21 +40,21 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
 
   const validationSchema = Yup.object({
     title: Yup.string('')
-      .required("Це обов'язкове поле")
-      .min(2, 'Мінімум 2 символи')
-      .max(50, 'Максимуму 50 символів'),
+      .required(' Required field')
+      .min(2, 'Minimum 2 characters')
+      .max(50, 'A maximum of 50 characters'),
     questions: Yup.array().of(
       Yup.object().shape({
         name: Yup.string()
-          .required("Це обов'язкове поле")
-          .min(2, 'Мінімум 2 символи')
-          .max(50, 'Максимуму 50 символів'),
+          .required(' Required field')
+          .min(2, 'Minimum 2 characters')
+          .max(50, 'A maximum of 50 characters'),
         answers: Yup.array().of(
           Yup.object().shape({
             value: Yup.string()
-              .required("Це обов'язкове поле")
+              .required(' Required field')
               .min(1, 'Мінімум 1 символ')
-              .max(50, 'Максимуму 50 символів')
+              .max(50, 'A maximum of 50 characters')
               .nullable(),
           }),
         ),
@@ -200,7 +200,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
                                   labelId="label-type"
                                   id={`questions[${index}].type`}
                                   name={`questions[${index}].type`}
-                                  label="Стать"
+                                  label="Sex"
                                   value={child.type}
                                   onChange={(e) => {
                                     if (e.target.value === 4) {
@@ -303,7 +303,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
                                           variant="contained"
                                           onClick={() => helpers2.push({ id: uuidv4(), value: '' })}
                                         >
-                                          Додати
+                                          Add
                                         </Button>
                                       )}
                                     </>
@@ -350,7 +350,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
               size="small"
               onClick={handleAddQuestions}
             >
-              Додати форму
+              Add форму
             </Button>
           )}
         </FormikProvider>

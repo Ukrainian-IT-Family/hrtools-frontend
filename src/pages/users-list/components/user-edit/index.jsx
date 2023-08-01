@@ -33,47 +33,47 @@ import UploadForm from './ubload-form';
 
 const validationSchema = Yup.object({
   lastName: Yup.string('')
-    .required("Це обов'язкове поле")
-    .min(2, 'Мінімум 2 символи')
-    .max(50, 'Максимуму 50 символів')
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, "Будь-ласка, введіть коректне ім'я"),
+    .required(' Required field')
+    .min(2, 'Minimum 2 characters')
+    .max(50, 'A maximum of 50 characters')
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name'),
   firstName: Yup.string('')
-    .required("Це обов'язкове поле")
-    .min(2, 'Мінімум 2 символи')
-    .max(50, 'Максимуму 50 символів')
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, "Будь-ласка, введіть коректне ім'я"),
-  birthday: Yup.string('').required("Це обов'язкове поле"),
+    .required(' Required field')
+    .min(2, 'Minimum 2 characters')
+    .max(50, 'A maximum of 50 characters')
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name'),
+  birthday: Yup.string('').required(' Required field'),
   middleName: Yup.string('')
 
-    .min(2, 'Мінімум 2 символи')
-    .max(50, 'Максимуму 50 символів')
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, "Будь-ласка, введіть коректне ім'я")
+    .min(2, 'Minimum 2 characters')
+    .max(50, 'A maximum of 50 characters')
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name')
     .nullable(),
   children: Yup.array().of(
     Yup.object().shape({
       fullName: Yup.string()
-        .required("Це обов'язкове поле")
-        .min(2, 'Мінімум 2 символи')
-        .max(50, 'Максимуму 50 символів')
-        .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, "Будь-ласка, введіть коректне ім'я"),
+        .required(' Required field')
+        .min(2, 'Minimum 2 characters')
+        .max(50, 'A maximum of 50 characters')
+        .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name'),
     }),
   ),
   region: Yup.string('')
 
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Будь-ласка, введіть коректну назву')
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name')
     .nullable(),
   area: Yup.string('')
 
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Будь-ласка, введіть коректну назву')
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name')
     .nullable(),
   town: Yup.string('')
 
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Будь-ласка, введіть коректну назву')
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name')
     .nullable(),
   postOffice: Yup.string('').nullable(),
   contactsPhones: Yup.array().of(
     Yup.object().shape({
-      phone: Yup.string().test('len', 'мінімум 12 цифр', (phone) => {
+      phone: Yup.string().test('len', 'minimum 12 digits', (phone) => {
         if (phone) {
           const phoneNumb = phone.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s/g, '');
           return phoneNumb.length >= 12;
@@ -82,17 +82,17 @@ const validationSchema = Yup.object({
       }),
     }),
   ),
-  email: Yup.string().email('Некоректна email адрасса').required("Обов'язкове поле"),
+  email: Yup.string().email('Incorrect email address').required('Required field'),
   emergency: Yup.array().of(
     Yup.object().shape({
       fullName: Yup.string()
-        .required("Це обов'язкове поле")
-        .min(2, 'Мінімум 2 символи')
-        .max(50, 'Максимуму 50 символів')
-        .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, "Будь-ласка, введіть коректне ім'я"),
+        .required(' Required field')
+        .min(2, 'Minimum 2 characters')
+        .max(50, 'A maximum of 50 characters')
+        .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name'),
       emergencyPhones: Yup.array().of(
         Yup.object().shape({
-          phone: Yup.string().test('len', 'мінімум 12 цифр', (phone) => {
+          phone: Yup.string().test('len', 'minimum 12 digits', (phone) => {
             if (phone) {
               const phoneNumb = phone.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s/g, '');
               return phoneNumb.length >= 12;
@@ -164,14 +164,14 @@ const UserEdit = ({ userId }) => {
           <S.UserEditFlex>
             <S.UserEditLeft>
               <S.PersonalBlock>
-                <S.PersonaTitle>Основна інформація</S.PersonaTitle>
+                <S.PersonaTitle>Basic information</S.PersonaTitle>
                 <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                       <TextField
                         fullWidth
                         name="lastName"
-                        label="Прізвище"
+                        label="Surname"
                         value={formik.values.lastName || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -183,7 +183,7 @@ const UserEdit = ({ userId }) => {
                       <TextField
                         fullWidth
                         name="firstName"
-                        label="Ім'я"
+                        label="Name"
                         value={formik.values.firstName || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -195,7 +195,7 @@ const UserEdit = ({ userId }) => {
                       <TextField
                         fullWidth
                         name="middleName"
-                        label="По-батькові"
+                        label="middle Name"
                         value={formik.values.middleName || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -209,7 +209,7 @@ const UserEdit = ({ userId }) => {
                         fullWidth
                         id="birthday"
                         name="birthday"
-                        label="Дата народження"
+                        label="Date of birth"
                         maxData
                         clearButton={false}
                         value={formik.values.birthday ? formik.values.birthday : ''}
@@ -220,12 +220,12 @@ const UserEdit = ({ userId }) => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                       <FormControl fullWidth>
-                        <InputLabel id="label-gender">Стать</InputLabel>
+                        <InputLabel id="label-gender">Sex</InputLabel>
                         <Select
                           labelId="label-gender"
                           id="gender"
                           name="gender"
-                          label="Стать"
+                          label="Sex"
                           value={formik.values.gender ? formik.values.gender : genderList[0].value}
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
@@ -240,12 +240,12 @@ const UserEdit = ({ userId }) => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                       <FormControl fullWidth>
-                        <InputLabel id="label-gender">Сімейний статус</InputLabel>
+                        <InputLabel id="label-gender">Family status</InputLabel>
                         <Select
                           labelId="label-gender"
                           id="maritalStatus"
                           name="maritalStatus"
-                          label="Сімейний статус"
+                          label="Family status"
                           value={
                             formik.values.maritalStatus
                               ? formik.values.maritalStatus
@@ -266,7 +266,7 @@ const UserEdit = ({ userId }) => {
               </S.PersonalBlock>
 
               <S.PersonalBlock>
-                <S.PersonaTitle>Відомості про дітей</S.PersonaTitle>
+                <S.PersonaTitle>Information about children</S.PersonaTitle>
 
                 <ChildRows
                   childList={formik.values.children}
@@ -279,14 +279,14 @@ const UserEdit = ({ userId }) => {
               </S.PersonalBlock>
 
               <S.PersonalBlock>
-                <S.PersonaTitle>Адреса</S.PersonaTitle>
+                <S.PersonaTitle>Address</S.PersonaTitle>
                 <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                       <TextField
                         fullWidth
                         name="region"
-                        label="Область"
+                        label="Region"
                         value={formik.values.region || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -298,7 +298,7 @@ const UserEdit = ({ userId }) => {
                       <TextField
                         fullWidth
                         name="area"
-                        label="Район"
+                        label="Area"
                         value={formik.values.area || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -310,7 +310,7 @@ const UserEdit = ({ userId }) => {
                       <TextField
                         fullWidth
                         name="town"
-                        label="Місто/Село"
+                        label="City/Village"
                         value={formik.values.town || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -322,7 +322,7 @@ const UserEdit = ({ userId }) => {
                       <TextField
                         fullWidth
                         name="postOffice"
-                        label="Найблище відділення нової пошти"
+                        label="The nearest branch of the new post office"
                         value={formik.values.postOffice || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -335,7 +335,7 @@ const UserEdit = ({ userId }) => {
               </S.PersonalBlock>
 
               <S.PersonalBlock>
-                <S.PersonaTitle>Контакти</S.PersonaTitle>
+                <S.PersonaTitle>Contacts</S.PersonaTitle>
                 <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={2} justifyContent="space-between">
                     <Grid item xs={12} sm={5}>
@@ -486,14 +486,14 @@ const UserEdit = ({ userId }) => {
           <S.PersonalBlock>
             <GS.FlexContainer $justify="flex-end">
               <Button variant="contained" type="submit">
-                Зберегти
+                Save
               </Button>
             </GS.FlexContainer>
           </S.PersonalBlock>
 
           <Collapse in={formSubmit}>
             <S.PersonalBlock>
-              <Alert severity="success">Дані успішно збережено</Alert>
+              <Alert severity="success">Data saved successfully</Alert>
             </S.PersonalBlock>
           </Collapse>
         </S.UserEditInfo>

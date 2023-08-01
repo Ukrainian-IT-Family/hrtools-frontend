@@ -31,7 +31,7 @@ const WorkerList = ({ action, userId, wichList }) => {
     setWichId(whichIdCopy);
   };
 
-  // додати всі
+  // Add всі
   const toggleWich = (e) => {
     if (e.target.checked) {
       const whichIdCopy = workersList.map((item) => item.id);

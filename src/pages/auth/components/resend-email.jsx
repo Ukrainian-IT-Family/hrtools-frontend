@@ -48,25 +48,25 @@ const ResendEmail = () => {
       {!authLoader ? (
         <>
           <S.AuthTitle>
-            Будь ласка, підтвердіть свою адресу електронної пошти. Для цього перейдіть за посиланням
-            з листа, що вам було надіслано на пошту
+            Please confirm your email address. To do this, follow the link from the letter that was
+            sent to you by mail
           </S.AuthTitle>
           <S.FormRow>
             <GS.FlexContainer $justify="center">
               <Button onClick={handleRequest} disabled={mailSended} variant="contained">
-                Надіслати лист ще раз
+                Send the letter again
               </Button>
             </GS.FlexContainer>
           </S.FormRow>
           {mailSended && (
             <S.FormRow>
-              <GS.FlexContainer $justify="center">Повідомлення відправленно.</GS.FlexContainer>
+              <GS.FlexContainer $justify="center">Message sent.</GS.FlexContainer>
               <GS.FlexContainer $justify="center">
-                Можна повторно надіслати лише раз на {seconds} секунд
+                Can be resubmitted only once per {seconds} seconds
               </GS.FlexContainer>
             </S.FormRow>
           )}
-          {error && <Alert severity="error">Сталася помилка, повідомлення не відправленно</Alert>}
+          {error && <Alert severity="error">An error occurred, the message was not sent</Alert>}
         </>
       ) : (
         <Loader />

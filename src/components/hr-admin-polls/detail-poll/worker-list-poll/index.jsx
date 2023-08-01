@@ -28,7 +28,7 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
     setWichId(whichIdCopy);
   };
 
-  // додати всі
+  // Add всі
   const toggleWich = (e) => {
     if (e.target.checked) {
       const whichIdCopy = workersList.map((item) => item.id);

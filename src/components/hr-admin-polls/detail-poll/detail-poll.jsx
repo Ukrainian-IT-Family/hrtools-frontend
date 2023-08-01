@@ -105,7 +105,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                       )}
 
                       <Button variant="contained" color="error" onClick={() => handleOpenDel()}>
-                        Видалити
+                        Delete
                       </Button>
                     </Stack>
                   </Stack>
@@ -162,7 +162,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
           >
             {openModalDel && (
               <>
-                <S.QaModalTitle>Видалити це опитування?</S.QaModalTitle>
+                <S.QaModalTitle>Delete це опитування?</S.QaModalTitle>
                 <Stack mt={2} mb={2} justifyContent="center" direction="row" spacing={2}>
                   <Button variant="contained" type="button" onClick={handleCloseDel}>
                     Cкасувати
@@ -174,7 +174,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                       handleCloseDel();
                     }}
                   >
-                    Видалити
+                    Delete
                   </Button>
                 </Stack>
               </>

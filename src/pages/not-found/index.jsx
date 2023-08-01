@@ -10,10 +10,10 @@ const NotFound = () => (
     <Header pageName="" />
     <GS.Wrap>
       <S.NotFound>
-        Сторінку не знайдено
+        Page not found
         <br />
         <NavLink to="/">
-          <Button variant="contained">На головну</Button>
+          <Button variant="contained">On the main one</Button>
         </NavLink>
       </S.NotFound>
     </GS.Wrap>

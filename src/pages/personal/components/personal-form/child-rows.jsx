@@ -42,7 +42,7 @@ const ChildRows = ({ childList, errors, touched, handleChange, handleBlur, setFi
                           fullWidth
                           id={`children[${index}].fullName`}
                           name={`children[${index}].fullName`}
-                          label="ПІБ дитини"
+                          label="Name of the child"
                           value={child.fullName}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -64,12 +64,12 @@ const ChildRows = ({ childList, errors, touched, handleChange, handleBlur, setFi
                       </Grid>
                       <Grid item xs={12} sm={4}>
                         <FormControl fullWidth>
-                          <InputLabel id={`label-childGender${index}`}>Стать</InputLabel>
+                          <InputLabel id={`label-childGender${index}`}>Sex</InputLabel>
                           <Select
                             labelId={`label-childGender${index}`}
                             id={`children[${index}].gender`}
                             name={`children[${index}].gender`}
-                            label="Стать"
+                            label="Sex"
                             value={child.gender ? child.gender : genderList[0].value}
                             onChange={handleChange}
                           >
@@ -88,7 +88,7 @@ const ChildRows = ({ childList, errors, touched, handleChange, handleBlur, setFi
                           clearButton={false}
                           id={`children[${index}].birthday`}
                           name={`children[${index}].birthday`}
-                          label="Дата народження"
+                          label="Date of birth"
                           value={child.birthday ? child.birthday : ''}
                           setFieldValue={setFieldValue}
                         />
@@ -106,12 +106,12 @@ const ChildRows = ({ childList, errors, touched, handleChange, handleBlur, setFi
                 color="error"
                 onClick={() => helpers.remove(childList.length - 1)}
               >
-                Видалити
+                Delete
               </Button>
             )}
 
             <Button variant="contained" size="small" onClick={() => helpers.push(exemplePush)}>
-              Додати
+              Add
             </Button>
           </Stack>
         </>

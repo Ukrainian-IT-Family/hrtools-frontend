@@ -23,7 +23,7 @@ const UploadForm = ({ resumeFileName, path }) => {
         setIsSave(false);
       }, 5000);
     } catch (error) {
-      setErr('сталася помилка');
+      setErr('an error occurred');
       setTimeout(() => {
         setErr(false);
       }, 5000);
@@ -38,9 +38,9 @@ const UploadForm = ({ resumeFileName, path }) => {
     if (file) {
       reader.readAsDataURL(file);
       if (file.size >= 5000000) {
-        setErr('файл занадто великий!');
+        setErr('file is too big!');
       } else if (!suportedFormat.includes(file.type)) {
-        setErr('Невірний тип файла!');
+        setErr('Invalid file type!');
       } else {
         handleAction(file);
       }
@@ -57,7 +57,7 @@ const UploadForm = ({ resumeFileName, path }) => {
         setIsSave(false);
       }, 5000);
     } catch (error) {
-      setErr('сталася помилка');
+      setErr('an error occurred');
       setTimeout(() => {
         setErr(false);
       }, 5000);
@@ -69,7 +69,7 @@ const UploadForm = ({ resumeFileName, path }) => {
       <S.UploadFlex>
         <S.UploadFlexButton>
           <Button variant="contained" component="label">
-            Додати резюме
+            Add resume
             <input
               ref={inputFile}
               name="resume"
@@ -87,7 +87,7 @@ const UploadForm = ({ resumeFileName, path }) => {
             <S.UploadFileIconDelete onClick={() => onFileRemove()} />
             <S.ResumeLink target="_blank" href={path}>
               <S.UploadFileIcon />
-              <S.UploadFileText>Резюме завантаженно</S.UploadFileText>
+              <S.UploadFileText>resume loaded</S.UploadFileText>
             </S.ResumeLink>
           </S.UploadFile>
         ) : null}
@@ -95,7 +95,7 @@ const UploadForm = ({ resumeFileName, path }) => {
 
       <Collapse in={isSave}>
         <S.PersonalBlock>
-          <Alert severity="success">Дані успішно збережено</Alert>
+          <Alert severity="success">Data saved successfully</Alert>
         </S.PersonalBlock>
       </Collapse>
 

@@ -7,7 +7,7 @@ const Poll = () => {
 
   return (
     <GS.MainWrap>
-      <Header pageName="Персональний кабінет" />
+      <Header pageName="Personal account" />
       <GS.Wrap>
         <GS.Main>
           <GS.MainLeft>

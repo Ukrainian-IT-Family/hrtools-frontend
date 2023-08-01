@@ -92,7 +92,7 @@ const MyVacations = () => {
                           <DeleteIcon />
                         </Button>
                       ) : (
-                        <S.VacData>Не можливо видалити</S.VacData>
+                        <S.VacData>Не можливо Delete</S.VacData>
                       )}
                     </S.VacItem>
                   </S.VacTop>

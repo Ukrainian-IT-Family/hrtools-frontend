@@ -140,8 +140,8 @@ const UsersTable = ({ filterParam, searchId }) => {
                       <TableRow>
                         <TableCell align="center">ID</TableCell>
                         <TableCell align="center">Ім&apos;я</TableCell>
-                        <TableCell align="center">Прізвище</TableCell>
-                        <TableCell align="center">По-батькові</TableCell>
+                        <TableCell align="center">Surname</TableCell>
+                        <TableCell align="center">middle Name</TableCell>
                         <TableCell align="center">Електрона адерса</TableCell>
                         <TableCell align="center">Роль</TableCell>
                         <TableCell align="center">Робочий час</TableCell>
@@ -214,13 +214,13 @@ const UsersTable = ({ filterParam, searchId }) => {
             </>
           ) : (
             <>
-              <S.UserDeleteTitle>Видалити цього користувача?</S.UserDeleteTitle>
+              <S.UserDeleteTitle>Delete цього користувача?</S.UserDeleteTitle>
               <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
                 <Button variant="contained" onClick={handleClose}>
                   Скасувати
                 </Button>
                 <Button variant="contained" color="error" onClick={handleDeleteDispatch}>
-                  Видалити
+                  Delete
                 </Button>
               </Stack>
             </>

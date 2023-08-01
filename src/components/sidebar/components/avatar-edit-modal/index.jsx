@@ -80,7 +80,7 @@ const AvatarEditModal = ({ handleClose }) => {
                 disabled={sizeValidate && !result}
                 onClick={() => handeReques()}
               >
-                Зберегти
+                Save
               </Button>
               <Button variant="outlined" onClick={() => handleClose()}>
                 Відмінити

@@ -25,7 +25,7 @@ const ContactsPhone = ({ nameArr, phonesList, errors, touched, handleChange, han
                       id={`${nameArr}[${index}].phone`}
                       name={`${nameArr}[${index}].phone`}
                       value={child.phone}
-                      label="Телефон"
+                      label="Phone"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={
@@ -48,15 +48,12 @@ const ContactsPhone = ({ nameArr, phonesList, errors, touched, handleChange, han
                 {index >= phonesList.length - 1 && index < 1 ? (
                   <S.PersonalButtonAdd
                     onClick={() => helpers.push({ id: uuidv4(), phone: '' })}
-                    title="Додати телефон"
+                    title="Add Phone"
                   >
                     <ControlPointIcon />
                   </S.PersonalButtonAdd>
                 ) : (
-                  <S.PersonalButtonAdd
-                    onClick={() => helpers.remove(index)}
-                    title="Видалити телефон"
-                  >
+                  <S.PersonalButtonAdd onClick={() => helpers.remove(index)} title="Delete Phone">
                     <RemoveCircleOutlineIcon />
                   </S.PersonalButtonAdd>
                 )}

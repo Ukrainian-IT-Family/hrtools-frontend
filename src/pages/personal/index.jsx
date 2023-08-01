@@ -10,7 +10,7 @@ const Personal = () => {
 
   return (
     <GS.MainWrap>
-      <Header pageName="Персональний кабінет" />
+      <Header pageName="Personal account" />
       <GS.Wrap>
         <GS.Main>
           {!waiter ? (

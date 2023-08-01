@@ -15,17 +15,17 @@ YupPassword(Yup);
 
 const ResetPassSchema = Yup.object().shape({
   password: Yup.string()
-    .required("Обов'язкове поле")
+    .required('Required field')
     .min(
       8,
-      'Пароль мусить мати 8 і більше символів, хоча б одну велику літеру, хоча б одну малу літеру та одну цифру',
+      'Password must have 8 or more characters, at least one uppercase letter, at least one lowercase letter and one number',
     )
-    .minLowercase(1, 'Пароль мусить мати хоча б одну малу літеру')
-    .minUppercase(1, 'Пароль мусить мати хоча б одну велику літеру')
-    .minNumbers(1, 'Пароль мусить мати хоча б одну цифру'),
+    .minLowercase(1, 'The password must have at least one lowercase letter')
+    .minUppercase(1, 'The password must have at least one capital letter')
+    .minNumbers(1, 'Password must have at least one digit'),
   password_confirmation: Yup.string()
-    .required("Обов'язкове поле")
-    .oneOf([Yup.ref('password'), null], 'Паролі не збігаються'),
+    .required('Required field')
+    .oneOf([Yup.ref('password'), null], 'Passwords do not match'),
 });
 
 const ResetPass = () => {
@@ -56,7 +56,7 @@ const ResetPass = () => {
     <>
       {!authLoader ? (
         <>
-          <S.AuthTitle>Відновлення пароля</S.AuthTitle>
+          <S.AuthTitle>Password recovery</S.AuthTitle>
 
           <form onSubmit={formik.handleSubmit}>
             <S.FormRow>
@@ -82,7 +82,7 @@ const ResetPass = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
-                label="Підтвердити пароль"
+                label="Confirm password"
                 type="password"
                 name="password_confirmation"
                 id="password_confirmation"
@@ -104,18 +104,18 @@ const ResetPass = () => {
                 size="large"
                 disabled={!(formik.isValid && formik.dirty) || formik.isSubmitting}
               >
-                Змінити пароль
+                Change password
               </Button>
             </S.FormRow>
           </form>
           {submitConfirm && !error && (
             <S.AlertStyled severity="success">
-              Ваш пароль змінено! <NavLink to="/auth">Увійдіть</NavLink>
+              Your password has been changed! <NavLink to="/auth">Come in</NavLink>
             </S.AlertStyled>
           )}
           {error && (
             <S.AlertStyled severity="error">
-              {error} <NavLink to="/auth/forgot-pass/">Відправити лист ще раз</NavLink>
+              {error} <NavLink to="/auth/forgot-pass/">Send the letter again</NavLink>
             </S.AlertStyled>
           )}
         </>

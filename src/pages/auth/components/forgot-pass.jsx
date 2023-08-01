@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 import * as S from '../styles';
 
 const ForgotPassSchema = Yup.object().shape({
-  email: Yup.string().email('Некоректна email адрасса').required("Обов'язкове поле"),
+  email: Yup.string().email('Incorrect email address').required('required field'),
 });
 
 const ForgotPass = () => {
@@ -39,9 +39,9 @@ const ForgotPass = () => {
     <>
       {!authLoader ? (
         <>
-          <S.AuthTitle>Забули пароль?</S.AuthTitle>
+          <S.AuthTitle>Forgot your password?</S.AuthTitle>
           <S.AuthSubTitle>
-            Вам на пошту буде відправлено з посиланням для зміни пароля
+            You will be sent an email with a link to change your password
           </S.AuthSubTitle>
 
           <form onSubmit={formik.handleSubmit}>
@@ -61,7 +61,7 @@ const ForgotPass = () => {
             </S.FormRow>
             <S.FormRow>
               <GS.FlexContainer $justify="flex-end">
-                <S.StyledLink to="/auth/">Повернутися до авторизації</S.StyledLink>
+                <S.StyledLink to="/auth/">Return to authorization</S.StyledLink>
               </GS.FlexContainer>
             </S.FormRow>
             <S.FormRow>
@@ -72,14 +72,13 @@ const ForgotPass = () => {
                 size="large"
                 disabled={!(formik.isValid && formik.dirty) || formik.isSubmitting}
               >
-                Надіслати лист
+                Send a letter
               </Button>
             </S.FormRow>
           </form>
           {submitConfirm && !error && (
             <S.AlertStyled severity="success">
-              Вам відправленно лист на електрону адресу.
-              <br /> Перейдіть за посиланням у описі
+              An email has been sent to you. <br /> Follow the link in the description
             </S.AlertStyled>
           )}
           {error && <S.AlertStyled severity="error">{error}</S.AlertStyled>}

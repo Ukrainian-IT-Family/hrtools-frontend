@@ -1,5 +1,3 @@
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import {
   Box,
   Button,
@@ -13,7 +11,6 @@ import {
 } from '@mui/material';
 import { FieldArray } from 'formik';
 import PropTypes from 'prop-types';
-import { FieldMask } from 'src/components';
 import { relationship } from 'src/constants';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -49,7 +46,7 @@ const Emergency = ({ emergency, errors, touched, handleChange, handleBlur }) => 
                           fullWidth
                           id={`emergency[${index}].fullName`}
                           name={`emergency[${index}].fullName`}
-                          label="ПІБ"
+                          label="Full name"
                           value={child.fullName}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -71,12 +68,12 @@ const Emergency = ({ emergency, errors, touched, handleChange, handleBlur }) => 
                       </Grid>
                       <Grid item xs={12} sm={6} md={4}>
                         <FormControl fullWidth>
-                          <InputLabel id={`label-childGender${index}`}>Відносини</InputLabel>
+                          <InputLabel id={`label-childGender${index}`}>Relations</InputLabel>
                           <Select
                             labelId={`label-childGender${index}`}
                             id={`emergency[${index}].relationship`}
                             name={`emergency[${index}].relationship`}
-                            label="Відносини"
+                            label="Relations"
                             value={child.relationship}
                             onChange={handleChange}
                           >
@@ -119,12 +116,12 @@ const Emergency = ({ emergency, errors, touched, handleChange, handleBlur }) => 
                 color="error"
                 onClick={() => helpers.remove(emergency.length - 1)}
               >
-                Видалити
+                Delete
               </Button>
             )}
             {emergency.length < 2 && (
               <Button variant="contained" size="small" onClick={() => helpers.push(exemplePush)}>
-                Додати
+                Add
               </Button>
             )}
           </Stack>

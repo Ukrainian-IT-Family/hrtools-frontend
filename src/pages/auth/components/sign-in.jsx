@@ -15,16 +15,16 @@ import * as S from '../styles';
 YupPassword(Yup);
 
 const SignInSchema = Yup.object().shape({
-  email: Yup.string().email('Некоректна email адрасса').required("Обов'язкове поле"),
+  email: Yup.string().email('Incorrect email address').required('Required field'),
   password: Yup.string()
-    .required("Обов'язкове поле")
+    .required('Required field')
     .min(
       8,
-      'Пароль мусить мати 8 і більше символів, хоча б одну велику літеру, хоча б одну малу літеру та одну цифру',
+      'Password must have 8 or more characters, at least one uppercase letter, at least one lowercase letter and one number',
     )
-    .minLowercase(1, 'Пароль мусить мати хоча б одну малу літеру')
-    .minUppercase(1, 'Пароль мусить мати хоча б одну велику літеру')
-    .minNumbers(1, 'Пароль мусить мати хоча б одну цифру'),
+    .minLowercase(1, 'The password must have at least one lowercase letter')
+    .minUppercase(1, 'The password must have at least one capital letter')
+    .minNumbers(1, 'Password must have at least one digit'),
 });
 
 const SignIn = () => {
@@ -57,7 +57,7 @@ const SignIn = () => {
     <>
       {!authLoader ? (
         <>
-          <S.AuthTitle>Авторизація</S.AuthTitle>
+          <S.AuthTitle>Authorization</S.AuthTitle>
 
           <form onSubmit={formik.handleSubmit}>
             <S.FormRow>
@@ -82,7 +82,7 @@ const SignIn = () => {
                 onBlur={formik.handleBlur}
                 fullWidth
                 value={formik.values.password}
-                label="Пароль"
+                label="password"
                 type="password"
                 name="password"
                 id="password"
@@ -95,8 +95,8 @@ const SignIn = () => {
             </S.FormRow>
             <S.FormRow>
               <GS.FlexContainer $justify="space-between">
-                <S.StyledLink to="/auth/sign-up">Реєстрація</S.StyledLink>
-                <S.StyledLink to="/auth/forgot-pass">Забули пароль?</S.StyledLink>
+                <S.StyledLink to="/auth/sign-up">Registration</S.StyledLink>
+                <S.StyledLink to="/auth/forgot-pass">Forgot your password?</S.StyledLink>
               </GS.FlexContainer>
             </S.FormRow>
             <S.FormRow>
@@ -107,17 +107,15 @@ const SignIn = () => {
                 size="large"
                 disabled={!(formik.isValid && formik.dirty) || formik.isSubmitting}
               >
-                Увійти
+                Sign in
               </Button>
             </S.FormRow>
-            {errors && <Alert severity="error">Не вірний логін або пароль</Alert>}
+            {errors && <Alert severity="error">Invalid login or password</Alert>}
 
             {emailNotVerify && (
               <S.AlertStyled severity="error">
-                Ваш email не підтвердженно{' '}
-                <NavLink to={`/auth/resend-email/${emailNotVerify}`}>
-                  натисніть для підведження
-                </NavLink>
+                Your email is not confirmed{' '}
+                <NavLink to={`/auth/resend-email/${emailNotVerify}`}>click to preview</NavLink>
               </S.AlertStyled>
             )}
           </form>

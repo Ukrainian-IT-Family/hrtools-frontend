@@ -52,7 +52,7 @@ const DeleteVac = ({ handleClose, handleOpen, deleteId }) => {
           </>
         ) : (
           <>
-            <S.ModalTitle>Видалити запит ?</S.ModalTitle>
+            <S.ModalTitle>Delete запит ?</S.ModalTitle>
             <Stack mt={2} mb={3} justifyContent="center" direction="row" spacing={2}>
               <Button variant="contained" type="submit">
                 Так

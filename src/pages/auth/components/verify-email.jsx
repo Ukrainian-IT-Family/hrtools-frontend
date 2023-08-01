@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { Loader } from 'src/components/';
@@ -21,16 +21,16 @@ const View = () => {
     return <Loader />;
   }
   if (error) {
-    return <S.AuthTitle>Термін дії підтвердження минув</S.AuthTitle>;
+    return <S.AuthTitle>Confirmation has expired</S.AuthTitle>;
   }
   return (
     <>
-      <S.AuthTitle>Дякуємо за підтвердження електронної адреси</S.AuthTitle>
+      <S.AuthTitle>Thank you for confirming your email address</S.AuthTitle>
       <S.FormRow>
         <GS.FlexContainer $justify="center">
           <NavLink to="/auth">
             <Button variant="contained" type="button" size="large">
-              Увійти
+              Sign in
             </Button>
           </NavLink>
         </GS.FlexContainer>
@@ -40,7 +40,6 @@ const View = () => {
 };
 
 const VerifyEmail = () => {
-  const param = useParams();
   const dispatch = useDispatch();
   const query = useQuery();
   const { userId } = useParams();

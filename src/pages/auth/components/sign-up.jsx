@@ -1,6 +1,6 @@
 import { Alert, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FieldMask } from 'src/components';
@@ -16,15 +16,15 @@ YupPassword(Yup);
 
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, 'Не менше 2 символів')
-    .max(50, 'Не більше 50 символів')
-    .required("Обов'язкове поле"),
+    .min(2, 'At least 2 characters')
+    .max(50, 'No more than 50 characters')
+    .required('Required field'),
   lastName: Yup.string()
-    .min(2, 'Не менше 2 символів')
-    .max(50, 'Не більше 50 символів')
-    .required("Обов'язкове поле"),
-  email: Yup.string().email('Некоректна email адрасса').required("Обов'язкове поле"),
-  phone: Yup.string().test('len', 'мінімум 12 цифр', (phone) => {
+    .min(2, 'At least 2 characters')
+    .max(50, 'No more than 50 characters')
+    .required('Required field'),
+  email: Yup.string().email('Incorrect email address').required('Required field'),
+  phone: Yup.string().test('len', 'minimum 12 digits', (phone) => {
     if (phone) {
       const phoneNumb = phone.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s/g, '');
       return phoneNumb.length >= 12;
@@ -32,17 +32,17 @@ const SignUpSchema = Yup.object().shape({
     return false;
   }),
   password: Yup.string()
-    .required("Обов'язкове поле")
+    .required('Required field')
     .min(
       8,
-      'Пароль мусить мати 8 і більше символів, хоча б одну велику літеру, хоча б одну малу літеру та одну цифру',
+      'Password must have 8 or more characters, at least one uppercase letter, at least one lowercase letter and one number',
     )
-    .minLowercase(1, 'Пароль мусить мати хоча б одну малу літеру')
-    .minUppercase(1, 'Пароль мусить мати хоча б одну велику літеру')
-    .minNumbers(1, 'Пароль мусить мати хоча б одну цифру'),
+    .minLowercase(1, 'The password must have at least one lowercase letter')
+    .minUppercase(1, 'The password must have at least one capital letter')
+    .minNumbers(1, 'Password must have at least one digit'),
   password_confirmation: Yup.string()
-    .required("Обов'язкове поле")
-    .oneOf([Yup.ref('password'), null], 'Паролі не збігаються'),
+    .required('Required field')
+    .oneOf([Yup.ref('password'), null], 'Passwords do not match'),
 });
 
 const SignUp = () => {
@@ -103,7 +103,7 @@ const SignUp = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
-                label="Пароль"
+                label="password"
                 type="password"
                 name="password"
                 id="password"
@@ -121,7 +121,7 @@ const SignUp = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
-                label="Підтвердити пароль"
+                label="Confirm password"
                 type="password"
                 name="password_confirmation"
                 id="password_confirmation"
@@ -141,7 +141,7 @@ const SignUp = () => {
                 onBlur={formik.handleBlur}
                 required
                 fullWidth
-                label="Ім’я"
+                label="Name"
                 id="firstName"
                 name="firstName"
                 variant="outlined"
@@ -158,7 +158,7 @@ const SignUp = () => {
                 onBlur={formik.handleBlur}
                 required
                 fullWidth
-                label="Прізвище"
+                label="Surnames"
                 name="lastName"
                 id="lastName"
                 variant="outlined"
@@ -176,7 +176,7 @@ const SignUp = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
-                label="Номер телефону"
+                label="Phone number"
                 name="phone"
                 id="phone"
                 variant="outlined"
@@ -186,7 +186,7 @@ const SignUp = () => {
             </S.FormRow>
             <S.FormRow>
               <GS.FlexContainer $justify="flex-end">
-                <S.StyledLink to="/auth/">У вас є аккаунт? Увійти</S.StyledLink>
+                <S.StyledLink to="/auth/">Do you have an account? Sign in</S.StyledLink>
               </GS.FlexContainer>
             </S.FormRow>
             <S.FormRow>
@@ -197,7 +197,7 @@ const SignUp = () => {
                 size="large"
                 disabled={!(formik.isValid && formik.dirty)}
               >
-                Створити аккаунт
+                Create an account
               </Button>
             </S.FormRow>
           </form>

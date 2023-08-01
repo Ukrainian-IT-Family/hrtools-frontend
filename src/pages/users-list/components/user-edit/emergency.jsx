@@ -119,12 +119,12 @@ const Emergency = ({ emergency, errors, touched, handleChange, handleBlur }) => 
                 color="error"
                 onClick={() => helpers.remove(emergency.length - 1)}
               >
-                Видалити
+                Delete
               </Button>
             )}
             {emergency.length < 2 && (
               <Button variant="contained" size="small" onClick={() => helpers.push(exemplePush)}>
-                Додати
+                Add
               </Button>
             )}
           </Stack>
