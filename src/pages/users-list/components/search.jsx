@@ -1,23 +1,14 @@
 import SearchIcon from '@mui/icons-material/Search';
-import {
-  Autocomplete,
-  Button,
-  IconButton,
-  InputAdornment,
-  InputBase,
-  Paper,
-  TextField,
-} from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import * as S from '../styles';
 
 const Search = ({ setSearchId }) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState([]);
   const usersList = useSelector((state) => state.adminReducer.usersList);
   const waiter = useSelector((state) => state.adminReducer.waiter);
 
@@ -33,7 +24,7 @@ const Search = ({ setSearchId }) => {
 
   return (
     <>
-      <S.SearchText>Введіть ПІБ користувача для пошуку</S.SearchText>
+      <S.SearchText>Enter username to search</S.SearchText>
       <S.SearchForm>
         <S.SearchField
           id="asynchronous-demo"
@@ -59,7 +50,7 @@ const Search = ({ setSearchId }) => {
           renderInput={(params) => (
             <TextField
               size="small"
-              placeholder="Пошук..."
+              placeholder="Search..."
               {...params}
               InputProps={{
                 ...params.InputProps,

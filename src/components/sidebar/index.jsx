@@ -46,7 +46,7 @@ const Sidebar = () => {
 
               <S.ContactsItem>
                 <LocationOnIcon />
-                Україна {town && `, ${town}`}
+                Ukraine {town && `, ${town}`}
               </S.ContactsItem>
               {}
               {workTime && (

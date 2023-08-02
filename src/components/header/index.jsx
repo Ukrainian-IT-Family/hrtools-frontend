@@ -42,7 +42,7 @@ const Header = ({ pageName }) => {
               <MainMenu />
 
               <Button onClick={() => handleLogout()} variant="contained">
-                Вихід
+                Log out
               </Button>
 
               <S.MenuIconButton

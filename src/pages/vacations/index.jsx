@@ -16,7 +16,7 @@ const Vacations = () => {
 
   return (
     <GS.MainWrap>
-      <Header pageName="Відпустка/Лікарняний" />
+      <Header pageName="Vacation/Sick" />
       <GS.Wrap>
         <GS.Main>
           <GS.MainLeft>

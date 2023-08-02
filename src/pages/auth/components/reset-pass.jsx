@@ -65,7 +65,7 @@ const ResetPass = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
-                label="Новий пароль"
+                label="New password"
                 type="password"
                 name="password"
                 id="password"
@@ -110,7 +110,7 @@ const ResetPass = () => {
           </form>
           {submitConfirm && !error && (
             <S.AlertStyled severity="success">
-              Your password has been changed! <NavLink to="/auth">Come in</NavLink>
+              Your password has been changed! <NavLink to="/auth">Sign in</NavLink>
             </S.AlertStyled>
           )}
           {error && (

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export const useWindowSize = (modalWrap, modalBack, wrapHeight, children) => {
   const [size, setSize] = useState([0, 0]);
@@ -20,6 +20,29 @@ export const useWindowSize = (modalWrap, modalBack, wrapHeight, children) => {
     children,
   ]);
   return size;
+};
+
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
+export const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
 };
 
 export const getNowDate = () => {

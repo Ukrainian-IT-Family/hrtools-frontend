@@ -33,12 +33,14 @@ const validationSchema = Yup.object({
     .required(' Required field')
     .min(2, 'Minimum 2 characters')
     .max(50, 'A maximum of 50 characters')
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name'),
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name')
+    .nullable(),
   firstName: Yup.string('')
     .required(' Required field')
     .min(2, 'Minimum 2 characters')
     .max(50, 'A maximum of 50 characters')
-    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name'),
+    .matches(/^[^0-9`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐]*$/, 'Please enter a valid name')
+    .nullable(),
   middleName: Yup.string('')
     .required(' Required field')
     .min(2, 'Minimum 2 characters')
@@ -360,7 +362,7 @@ const PersonalForm = () => {
       </S.PersonalBlock>
 
       <S.PersonalBlock>
-        <S.PersonaTitle>Соціальні мережі</S.PersonaTitle>
+        <S.PersonaTitle>Social networks</S.PersonaTitle>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>

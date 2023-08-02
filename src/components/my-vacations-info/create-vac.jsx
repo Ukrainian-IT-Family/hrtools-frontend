@@ -77,7 +77,7 @@ const CreateVac = ({ handleClose }) => {
       {fixWaiter && <FixLoader />}
       {formSubmit ? (
         <>
-          <S.QaModalTitle>Запит створенно!</S.QaModalTitle>
+          <S.QaModalTitle>Request Created!</S.QaModalTitle>
           <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
             <Button variant="contained" onClick={handleClose}>
               Ок
@@ -86,7 +86,7 @@ const CreateVac = ({ handleClose }) => {
         </>
       ) : (
         <form onSubmit={formik.handleSubmit} id="form">
-          <S.ModalTitle>Створення запиту</S.ModalTitle>
+          <S.ModalTitle>Create a request</S.ModalTitle>
           <S.ModalRow>
             <FormControl>
               <S.ModalLabel>Тип</S.ModalLabel>
@@ -96,19 +96,19 @@ const CreateVac = ({ handleClose }) => {
                 name="type"
                 onChange={formik.handleChange}
               >
-                <FormControlLabel value="0" control={<Radio />} label="Відпустка" />
-                <FormControlLabel value="1" control={<Radio />} label="Лікарняний" />
+                <FormControlLabel value="0" control={<Radio />} label="Vacation" />
+                <FormControlLabel value="1" control={<Radio />} label="Sick" />
               </RadioGroup>
             </FormControl>
           </S.ModalRow>
 
           <S.ModalRow>
-            <S.ModalLabel>Коментар</S.ModalLabel>
+            <S.ModalLabel>Comment</S.ModalLabel>
             <TextField
               mt={1}
               fullWidth
               id="comment"
-              label="Коментар"
+              label="Comment"
               variant="outlined"
               name="comment"
               multiline
@@ -117,7 +117,7 @@ const CreateVac = ({ handleClose }) => {
             />
           </S.ModalRow>
 
-          <S.ModalLabel>Дата початку і кінця</S.ModalLabel>
+          <S.ModalLabel>Start and end date</S.ModalLabel>
           <Stack justifyContent="flex-start" direction="row" spacing={2}>
             <DatePicker
               selected={startDate}
@@ -138,10 +138,10 @@ const CreateVac = ({ handleClose }) => {
 
           <Stack mt={2} mb={2} justifyContent="flex-start" direction="row" spacing={2}>
             <Button variant="contained" type="submit">
-              Створити
+              Create
             </Button>
             <Button variant="outlined" onClick={handleClose}>
-              Назад
+              Back
             </Button>
           </Stack>
         </form>

@@ -142,6 +142,9 @@ export const AvatarEditCrop = styled.div`
   max-width: 300px;
   margin: 0 auto;
   overflow: hidden;
+  @media (max-width: 375px) {
+    max-width: 250px;
+  }
 `;
 
 export const AvatarErrorText = styled.div`

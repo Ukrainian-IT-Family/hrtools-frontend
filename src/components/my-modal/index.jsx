@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useWindowSize } from 'src/hooks';
 

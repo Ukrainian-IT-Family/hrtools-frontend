@@ -17,7 +17,7 @@ const AnswersTable = () => {
     <S.AnswersTable>
       {results.length > 0 && (
         <>
-          <S.detailTitle>Відповіді</S.detailTitle>
+          <S.detailTitle>Answers</S.detailTitle>
           <S.AnswersTableWrap>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 800 }} size="small" aria-label="a dense table">
@@ -25,12 +25,12 @@ const AnswersTable = () => {
                   <TableRow>
                     {!anonymous && (
                       <>
-                        <TableCell>Аватар</TableCell>
-                        <TableCell>ПІБ</TableCell>
+                        <TableCell>Avatar</TableCell>
+                        <TableCell>Full name</TableCell>
                       </>
                     )}
                     {questions.map((td, index) => (
-                      <TableCell key={td.id}>Питання {index}</TableCell>
+                      <TableCell key={td.id}>Question {index}</TableCell>
                     ))}
                   </TableRow>
                 </TableHead>
@@ -41,7 +41,7 @@ const AnswersTable = () => {
                         <>
                           <TableCell>
                             <S.AnswersTableAvatar>
-                              {row.user.avatar ? <img src={row.user.avatar} alt="аватар" /> : '-'}
+                              {row.user.avatar ? <img src={row.user.avatar} alt="avatar" /> : '-'}
                             </S.AnswersTableAvatar>
                           </TableCell>
                           <TableCell>{row.user.fullName}</TableCell>

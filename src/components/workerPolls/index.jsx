@@ -39,15 +39,15 @@ const WorkerPolls = ({ isMain }) => {
     <>
       {isMain ? (
         <S.MainTop>
-          <S.MainTopTitle>Мої опитування</S.MainTopTitle>
+          <S.MainTopTitle>My Poll</S.MainTopTitle>
           <S.MainTopLink to="poll">
-            Дивитися всі
+            Watch all
             <ArrowForwardIcon />
           </S.MainTopLink>
         </S.MainTop>
       ) : (
         <S.MainTop>
-          <S.MainTopTitle>Всі опитування</S.MainTopTitle>
+          <S.MainTopTitle>All Poll</S.MainTopTitle>
         </S.MainTop>
       )}
 
@@ -63,10 +63,10 @@ const WorkerPolls = ({ isMain }) => {
                     <S.PollButton>
                       {!item.passed ? (
                         <Button variant="contained" onClick={() => handleOpen(item.id)}>
-                          Пройти
+                          Pass
                         </Button>
                       ) : (
-                        <Button onClick={() => handleOpenViewPoll(item.id)}>Пройдено</Button>
+                        <Button onClick={() => handleOpenViewPoll(item.id)}>passed</Button>
                       )}
                     </S.PollButton>
                   </S.PollRow>
@@ -74,7 +74,7 @@ const WorkerPolls = ({ isMain }) => {
               </>
             </S.PollList>
           ) : (
-            <>Немає опитувань</>
+            <>There are no polls</>
           )}
         </>
       ) : (

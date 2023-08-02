@@ -1,14 +1,17 @@
 import { Button, Stack } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Avatar from 'react-avatar-edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from 'src/components';
+import { useWindowDimensions } from 'src/hooks';
 import { authActions } from 'src/store/actions';
 
 import * as S from '../../styles';
 
 const AvatarEditModal = ({ handleClose }) => {
+  const { width } = useWindowDimensions();
+
   const waiter = useSelector((state) => state.authReducer.waiter);
 
   const [result, setResult] = useState(null);
@@ -54,25 +57,28 @@ const AvatarEditModal = ({ handleClose }) => {
         <>
           <S.AvatarEditCrop>
             <Avatar
-              width={300}
-              height={300}
-              label="Вибрати фото (jpeg, png, 5MB)"
-              imageWidth={300}
+              width={width > 375 ? 300 : 250}
+              height={width > 375 ? 300 : 250}
+              label="Choose a photo (jpeg, png, 5MB)"
+              imageWidth={width > 375 ? 300 : 250}
               onCrop={onCrop}
               onClose={onClose}
               cropRadius={50}
               labelStyle={{
                 width: '100%',
-                display: 'block',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                lineHeight: '1.1',
                 height: '100%',
                 fontWeight: 'bold',
                 cursor: 'pointer',
-                fontSize: '20px',
+                fontSize: '16px',
               }}
               onBeforeFileLoad={onBeforeFileLoad}
             />
           </S.AvatarEditCrop>
-          {!sizeValidate && <S.AvatarErrorText>Файл має бути до 5MB!</S.AvatarErrorText>}
+          {!sizeValidate && <S.AvatarErrorText>The file must be to 5MB!</S.AvatarErrorText>}
           <S.AvatarEditButtons>
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }} justifyContent="center">
               <Button
@@ -83,7 +89,7 @@ const AvatarEditModal = ({ handleClose }) => {
                 Save
               </Button>
               <Button variant="outlined" onClick={() => handleClose()}>
-                Відмінити
+                Cancel
               </Button>
             </Stack>
           </S.AvatarEditButtons>

@@ -28,7 +28,7 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
     setWichId(whichIdCopy);
   };
 
-  // Add всі
+  // Add All
   const toggleWich = (e) => {
     if (e.target.checked) {
       const whichIdCopy = workersList.map((item) => item.id);
@@ -62,12 +62,12 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
   return (
     <S.WorkerList>
       <S.WorkerCol>
-        <S.SearchText>Працівники</S.SearchText>
+        <S.SearchText>Employees</S.SearchText>
         <Search setSearchId={setSearchId} workers={workersList} />
         <S.PickAll>
           <FormControlLabel
             control={<Checkbox defaultChecked={false} onChange={toggleWich} />}
-            label="Усі користувачі"
+            label="Усі Users"
           />
         </S.PickAll>
 
@@ -89,12 +89,12 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
               })}
             </>
           ) : (
-            <S.emtyText>Немає працівників для вибору</S.emtyText>
+            <S.emtyText>There are no Employees to choose from</S.emtyText>
           )}
         </S.List>
       </S.WorkerCol>
       <S.WorkerCol className="which">
-        <S.SearchText>Обрані</S.SearchText>
+        <S.SearchText>Chosen</S.SearchText>
         <S.WorkerColFLex>
           <S.List className="which">
             {wichWorkers && wichWorkers.length ? (
@@ -114,7 +114,7 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
                 })}
               </>
             ) : (
-              <S.emtyText>Немає працівників для вибору</S.emtyText>
+              <S.emtyText>There are no Employees to choose from</S.emtyText>
             )}
           </S.List>
         </S.WorkerColFLex>
@@ -124,7 +124,7 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
           onClick={() => sendPoll(whichId)}
           disabled={whichId.length === 0}
         >
-          Надіслати
+          Send
         </Button>
       </S.WorkerCol>
     </S.WorkerList>

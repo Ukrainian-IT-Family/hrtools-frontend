@@ -15,14 +15,13 @@ import {
 } from '@mui/material';
 import { FormikProvider, useFormik } from 'formik';
 import { PropTypes } from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { avatarDefault } from 'src/assets/images';
 import { MyDataPicker, UserIcon, WorkerList } from 'src/components';
-import { genderList, maritalStatus, relationship } from 'src/constants';
+import { genderList, maritalStatus } from 'src/constants';
 import * as GS from 'src/global-styles';
 import { adminActions } from 'src/store/actions';
-import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 
 import * as S from '../../styles';
@@ -150,12 +149,12 @@ const UserEdit = ({ userId }) => {
     });
     formik.setFieldValue('workers', workersArr);
   };
-  console.log(formik.errors);
+
   return (
     <form onSubmit={formik.handleSubmit} id="form">
       <FormikProvider value={formik}>
         <S.UserEditInfo>
-          <S.UserEditT>Зміна інформації про користувача</S.UserEditT>
+          <S.UserEditT>Changing user information</S.UserEditT>
           <UserIcon
             name={userInfoFiltered.fullName || ''}
             img={userInfoFiltered.avatar || avatarDefault}
@@ -352,7 +351,7 @@ const UserEdit = ({ userId }) => {
                       <TextField
                         fullWidth
                         name="email"
-                        label="Електрона пошта"
+                        label="Email"
                         value={formik.values.email || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -365,7 +364,7 @@ const UserEdit = ({ userId }) => {
               </S.PersonalBlock>
 
               <S.PersonalBlock>
-                <S.PersonaTitle>Соціальні мережі</S.PersonaTitle>
+                <S.PersonaTitle>Social networks</S.PersonaTitle>
                 <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -406,7 +405,7 @@ const UserEdit = ({ userId }) => {
               </S.PersonalBlock>
 
               <S.PersonalBlock>
-                <S.PersonaTitle>Для екстреного зв&apos;язку</S.PersonaTitle>
+                <S.PersonaTitle>For emergency communication</S.PersonaTitle>
 
                 <Emergency
                   emergency={formik.values.emergency}
@@ -419,7 +418,7 @@ const UserEdit = ({ userId }) => {
             </S.UserEditLeft>
             <S.UserEditRight>
               <S.PersonalBlock>
-                <S.PersonaTitle>Роль</S.PersonaTitle>
+                <S.PersonaTitle>Role</S.PersonaTitle>
                 <S.UserEditRole>
                   <FormControl>
                     <RadioGroup
@@ -429,9 +428,9 @@ const UserEdit = ({ userId }) => {
                       onChange={formik.handleChange}
                     >
                       <FormControlLabel value="3" control={<Radio />} label="HR" />
-                      <FormControlLabel value="2" control={<Radio />} label="Працівник" />
-                      <FormControlLabel value="1" control={<Radio />} label="Адміністратор" />
-                      <FormControlLabel value="0" control={<Radio />} label="Нульова" />
+                      <FormControlLabel value="2" control={<Radio />} label="Employee" />
+                      <FormControlLabel value="1" control={<Radio />} label="Admin" />
+                      <FormControlLabel value="0" control={<Radio />} label="Zero" />
                     </RadioGroup>
                   </FormControl>
                 </S.UserEditRole>
@@ -444,7 +443,7 @@ const UserEdit = ({ userId }) => {
                 )}
               </S.PersonalBlock>
               <S.PersonalBlockMini>
-                <S.PersonaTitleMini>Робочий час</S.PersonaTitleMini>
+                <S.PersonaTitleMini>Working hours</S.PersonaTitleMini>
                 <TextField
                   fullWidth
                   name="workTime"
@@ -457,7 +456,7 @@ const UserEdit = ({ userId }) => {
                 />
               </S.PersonalBlockMini>
               <S.PersonalBlockMini>
-                <S.PersonaTitleMini>Посада</S.PersonaTitleMini>
+                <S.PersonaTitleMini>Position</S.PersonaTitleMini>
                 <TextField
                   fullWidth
                   size="small"
@@ -470,7 +469,7 @@ const UserEdit = ({ userId }) => {
                 />
               </S.PersonalBlockMini>
               <S.PersonalBlockMini>
-                <S.PersonaTitleMini>Дата прийняття на роботу</S.PersonaTitleMini>
+                <S.PersonaTitleMini>Date of employment</S.PersonaTitleMini>
                 <MyDataPicker
                   fullWidth
                   clearButton

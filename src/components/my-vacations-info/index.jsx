@@ -23,9 +23,9 @@ const MyVacationsInfo = () => {
   return (
     <>
       <S.MainTop>
-        <S.MainTopTitle> Відпустка/лікарняний</S.MainTopTitle>
+        <S.MainTopTitle> Vacation/Sick</S.MainTopTitle>
         <Button startIcon={<AddIcon />} onClick={() => handleOpenCreate()}>
-          Cтворити запит
+          Create a request
         </Button>
       </S.MainTop>
       {waiter ? (
@@ -35,16 +35,16 @@ const MyVacationsInfo = () => {
           {myVacationInfo && (
             <>
               <S.VacItem>
-                <S.VacItemLabel>Відпустка</S.VacItemLabel>
+                <S.VacItemLabel>Vacation</S.VacItemLabel>
                 <S.VacItemText>
-                  <span>Доступно: {myVacationInfo.availableVacationsDays}</span>{' '}
-                  <span>Використано: {myVacationInfo.vacationDaysUsed}</span>
+                  <span>Available: {myVacationInfo.availableVacationsDays}</span>{' '}
+                  <span>Used: {myVacationInfo.vacationDaysUsed}</span>
                 </S.VacItemText>
               </S.VacItem>
               <S.VacItem>
-                <S.VacItemLabel>Лірканяний</S.VacItemLabel>
+                <S.VacItemLabel>Sick</S.VacItemLabel>
                 <S.VacItemText>
-                  <span>Використано: {myVacationInfo.hospitalDaysUsed}</span>
+                  <span>Used: {myVacationInfo.hospitalDaysUsed}</span>
                 </S.VacItemText>
               </S.VacItem>
             </>

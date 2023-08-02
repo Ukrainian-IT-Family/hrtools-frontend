@@ -13,35 +13,35 @@ import * as S from './styles';
 function getPosition(userRole) {
   switch (userRole) {
     case 1:
-      return 'Адмін';
+      return 'Admin';
     case 2:
-      return 'Працівник';
+      return 'Employee';
     case 3:
       return 'Hr manager';
     default:
-      return 'Адмін';
+      return 'Admin';
   }
 }
 
 function getStatus(status) {
   switch (status) {
     case 0:
-      return 'Відхиленно';
+      return 'Rejected';
     case 1:
-      return 'Схваленно';
+      return 'Approved';
     default:
-      return 'На розгляді';
+      return 'Under consideration';
   }
 }
 
 function getType(type) {
   switch (type) {
     case 0:
-      return 'Відпустка';
+      return 'Vacation';
     case 1:
-      return 'Лікарнянний';
+      return 'Sick';
     default:
-      return 'Відпустка';
+      return 'Vacation';
   }
 }
 const AdminVacations = ({ isMain }) => {
@@ -73,15 +73,15 @@ const AdminVacations = ({ isMain }) => {
 
       {isMain ? (
         <S.MainTop>
-          <S.MainTopTitle>Запити працівників</S.MainTopTitle>
+          <S.MainTopTitle>Employee requests</S.MainTopTitle>
           <S.MainTopLink to="vacation">
-            Дивитися всі
+            Watch all
             <ArrowForwardIcon />
           </S.MainTopLink>
         </S.MainTop>
       ) : (
         <S.MainTop>
-          <S.MainTopTitle>Запити працівників</S.MainTopTitle>
+          <S.MainTopTitle>Employee requests</S.MainTopTitle>
         </S.MainTop>
       )}
       {!waiter ? (
@@ -92,7 +92,7 @@ const AdminVacations = ({ isMain }) => {
                 <S.Vac key={item.id}>
                   <S.VacTop>
                     <S.VacItem>
-                      <S.VacLabel>Працівник</S.VacLabel>
+                      <S.VacLabel>Employee</S.VacLabel>
                       <S.VacWorker>
                         <S.VacWorkerAvatar src={item.user.avatar || avatarDefault} />
                         <S.VacWorkerName>
@@ -102,18 +102,18 @@ const AdminVacations = ({ isMain }) => {
                       </S.VacWorker>
                     </S.VacItem>
                     <S.VacItem>
-                      <S.VacLabel>Дата/тип</S.VacLabel>
+                      <S.VacLabel>Date/type</S.VacLabel>
                       <S.VacType>{getType(item.type)}</S.VacType>
                       <S.VacData>
                         {item.dateStart} - {item.dateEnd}
                       </S.VacData>
                     </S.VacItem>
                     <S.VacItem>
-                      <S.VacLabel>Кількість днів</S.VacLabel>
+                      <S.VacLabel>Number of days</S.VacLabel>
                       <S.VacData>{item.daysCount}</S.VacData>
                     </S.VacItem>
                     <S.VacItem>
-                      <S.VacLabel>Дата запиту</S.VacLabel>
+                      <S.VacLabel>Date of request</S.VacLabel>
                       <S.VacData>{getStatus(item.status)}</S.VacData>
                     </S.VacItem>
                   </S.VacTop>
@@ -121,7 +121,7 @@ const AdminVacations = ({ isMain }) => {
                   {item.status === null && (
                     <S.VacBtns>
                       <Button variant="contained" onClick={() => handleAccept(item.id)}>
-                        Затвердити
+                        Approve
                       </Button>
 
                       <Button
@@ -129,7 +129,7 @@ const AdminVacations = ({ isMain }) => {
                         color="error"
                         onClick={() => handleCancel(item.id)}
                       >
-                        Відхилити
+                        Reject
                       </Button>
                     </S.VacBtns>
                   )}
@@ -150,7 +150,7 @@ const AdminVacations = ({ isMain }) => {
               )}
             </S.HrList>
           ) : (
-            <>Немає запитів</>
+            <>There are no requests</>
           )}
         </>
       ) : (
