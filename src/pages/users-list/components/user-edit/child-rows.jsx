@@ -42,7 +42,7 @@ const ChildRows = ({ childList, errors, touched, handleChange, handleBlur, setFi
                           fullWidth
                           id={`children[${index}].fullName`}
                           name={`children[${index}].fullName`}
-                          label="ПІБ дитини"
+                          label="Full name of the child"
                           value={child.fullName}
                           onChange={handleChange}
                           onBlur={handleBlur}

@@ -111,13 +111,13 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
       {fixWaiter && <FixLoader />}
       <form onSubmit={formik.handleSubmit} id="form">
         <FormikProvider value={formik}>
-          <S.PollTitle>Cтворити опитування</S.PollTitle>
+          <S.PollTitle>Create Poll</S.PollTitle>
           <Grid container rowSpacing={2} columnSpacing={5}>
             <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 name="title"
-                label="Назва опитування"
+                label="Назва Poll"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.title && Boolean(formik.errors.title)}
@@ -134,7 +134,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
                       onChange={(event) => formik.setFieldValue('anonymous', event.target.checked)}
                     />
                   }
-                  label="Анонімно"
+                  label="Anonymously"
                 />
               </FormGroup>
             </Grid>
@@ -152,7 +152,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
                             <TextField
                               id={`questions[${index}].name`}
                               name={`questions[${index}].name`}
-                              label="Запитання"
+                              label="Question"
                               variant="standard"
                               value={child.name}
                               fullWidth
@@ -187,7 +187,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
                               <Loader />
                             ) : (
                               <FormControl fullWidth>
-                                <InputLabel id="label-type">Тип</InputLabel>
+                                <InputLabel id="label-type">Type</InputLabel>
                                 <Select
                                   labelId="label-type"
                                   id={`questions[${index}].type`}
@@ -320,7 +320,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
                                   }}
                                 />
                               }
-                              label="Обов'язково"
+                              label="Necessarily"
                             />
                           </FormGroup>
                           {index > 0 && (
@@ -342,7 +342,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
               size="small"
               onClick={handleAddQuestions}
             >
-              Add форму
+              Add form
             </Button>
           )}
         </FormikProvider>
@@ -356,7 +356,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
       <MyModal isOpen={formSubmit} handleOpen={handleOpen} handleClose={handleClose} width={400}>
         {formSubmit && (
           <>
-            <S.QaModalTitle>Опитування створенно!</S.QaModalTitle>
+            <S.QaModalTitle>Poll created!</S.QaModalTitle>
             <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
               <Button variant="contained" onClick={handleClose}>
                 Ок

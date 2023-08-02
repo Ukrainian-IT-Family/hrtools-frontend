@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { Button, Checkbox, FormControlLabel, IconButton } from '@mui/material';
+import { Checkbox, FormControlLabel, IconButton } from '@mui/material';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -70,12 +70,12 @@ const WorkerList = ({ action, userId, wichList }) => {
   return (
     <S.WorkerList>
       <S.WorkerCol>
-        <S.SearchText>Працівники</S.SearchText>
+        <S.SearchText>Employees</S.SearchText>
         <Search setSearchId={setSearchId} />
         <S.PickAll>
           <FormControlLabel
             control={<Checkbox defaultChecked={false} onChange={toggleWich} />}
-            label="Усі користувачі"
+            label="Усі Users"
           />
         </S.PickAll>
 
@@ -99,12 +99,12 @@ const WorkerList = ({ action, userId, wichList }) => {
               })}
             </>
           ) : (
-            <S.emtyText>Немає працівників для вибору</S.emtyText>
+            <S.emtyText>There are no Employees to choose from</S.emtyText>
           )}
         </S.List>
       </S.WorkerCol>
       <S.WorkerCol className="which">
-        <S.SearchText>Обрані</S.SearchText>
+        <S.SearchText>Chosen</S.SearchText>
         <S.WorkerColFLex>
           <S.List className="which">
             {wichWorkers && wichWorkers.length ? (
@@ -126,13 +126,10 @@ const WorkerList = ({ action, userId, wichList }) => {
                 })}
               </>
             ) : (
-              <S.emtyText>Немає працівників для вибору</S.emtyText>
+              <S.emtyText>There are no Employees to choose from</S.emtyText>
             )}
           </S.List>
         </S.WorkerColFLex>
-        {/* <Button size="small" variant="contained" onClick={handleAction}>
-          Вибрати
-        </Button> */}
       </S.WorkerCol>
     </S.WorkerList>
   );

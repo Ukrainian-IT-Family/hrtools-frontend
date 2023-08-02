@@ -12,22 +12,22 @@ import * as S from './styles';
 function getStatus(status) {
   switch (status) {
     case 0:
-      return 'Відхиленно';
+      return 'Rejected';
     case 1:
-      return 'Схваленно';
+      return 'Approved';
     default:
-      return 'На розгляді';
+      return 'Under consideration';
   }
 }
 
 function getType(type) {
   switch (type) {
     case 0:
-      return 'Відпустка';
+      return 'Vacation';
     case 1:
-      return 'Лікарнянний';
+      return 'Sick';
     default:
-      return 'Відпустка';
+      return 'Vacation';
   }
 }
 const MyVacations = () => {
@@ -65,22 +65,22 @@ const MyVacations = () => {
                 <S.Vac key={item.id}>
                   <S.VacTop>
                     <S.VacItem>
-                      <S.VacLabel>Дата/тип</S.VacLabel>
+                      <S.VacLabel>Date/type</S.VacLabel>
                       <S.VacType>{getType(item.type)}</S.VacType>
                       <S.VacData>
                         {item.dateStart} - {item.dateEnd}
                       </S.VacData>
                     </S.VacItem>
                     <S.VacItem>
-                      <S.VacLabel>Кількість днів</S.VacLabel>
+                      <S.VacLabel>Number of days</S.VacLabel>
                       <S.VacData>{item.daysCount}</S.VacData>
                     </S.VacItem>
                     <S.VacItem>
-                      <S.VacLabel>Дата запиту</S.VacLabel>
+                      <S.VacLabel>Date of request</S.VacLabel>
                       <S.VacData>{getStatus(item.status)}</S.VacData>
                     </S.VacItem>
                     <S.VacItem>
-                      <S.VacLabel>Операції</S.VacLabel>
+                      <S.VacLabel>Operations</S.VacLabel>
                       {item.canDelete ? (
                         <Button
                           color="error"
@@ -92,7 +92,7 @@ const MyVacations = () => {
                           <DeleteIcon />
                         </Button>
                       ) : (
-                        <S.VacData>Не можливо Delete</S.VacData>
+                        <S.VacData>Not possible Delete</S.VacData>
                       )}
                     </S.VacItem>
                   </S.VacTop>
@@ -114,7 +114,7 @@ const MyVacations = () => {
               )}
             </S.HrList>
           ) : (
-            <>Немає запитів</>
+            <>There are no requests</>
           )}
         </>
       ) : (

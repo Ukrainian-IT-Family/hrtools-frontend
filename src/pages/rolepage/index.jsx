@@ -8,8 +8,8 @@ const RolePage = () => (
     <Header pageName="" />
     <GS.Wrap>
       <S.RoleWrap>
-        <S.T1>Ви успішно авторизувалися в системі!</S.T1>
-        <S.T2>Зачекайте, невдовзі Вам нададуть доступ!</S.T2>
+        <S.T1>You have successfully logged into the system!</S.T1>
+        <S.T2>Wait, soon you will be granted access!</S.T2>
       </S.RoleWrap>
     </GS.Wrap>
   </GS.MainWrap>

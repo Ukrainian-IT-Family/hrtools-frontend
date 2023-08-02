@@ -1,59 +1,51 @@
 export const genderList = [
   {
-    label: 'чоловіча',
+    label: 'male',
     value: 0,
   },
   {
-    label: 'жіноча',
+    label: 'female',
     value: 1,
   },
 ];
 export const maritalStatus = [
   {
-    label: 'заміжня',
+    label: 'married',
     value: 1,
   },
   {
-    label: 'незаміжня',
+    label: 'unmarried',
     value: 2,
-  },
-  {
-    label: 'неодружений',
-    value: 4,
-  },
-  {
-    label: 'одружений',
-    value: 3,
   },
 ];
 export const relationship = [
   {
     value: 4,
-    label: 'батько',
+    label: 'father',
   },
   {
     value: 5,
-    label: 'брат',
+    label: 'brother',
   },
   {
     value: 2,
-    label: 'дружина',
+    label: 'wife',
   },
   {
     value: 7,
-    label: 'інше',
+    label: 'other',
   },
   {
     value: 3,
-    label: 'мати',
+    label: 'have',
   },
   {
     value: 6,
-    label: 'сестра',
+    label: 'sister',
   },
   {
     value: 1,
-    label: 'чоловік',
+    label: 'husband',
   },
 ];
 export const suportedFormat = [
@@ -61,48 +53,43 @@ export const suportedFormat = [
   'application/msword',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ];
-export const menuItems = [
-  // { name: 'Новини', to: 'news', id: 0 },
-  // { name: 'Опитування', to: 'poll', id: 1 },
-  // { name: 'Відпустка/Лікарняний', to: 'vacation', id: 2 },
-  { name: 'Personal account', to: 'personal', id: 3 },
-];
+export const menuItems = [{ name: 'Personal account', to: 'personal', id: 3 }];
 
 export const menuItemsAdmin = [
-  { name: 'Користувачі', to: 'users-list', id: 2 },
-  { name: 'Опитування', to: 'poll', id: 3 },
-  { name: 'Відпустка/Лікарняний', to: 'vacation', id: 4 },
+  { name: 'Users', to: 'users-list', id: 2 },
+  { name: 'Poll', to: 'poll', id: 3 },
+  { name: 'Vacation/Sick', to: 'vacation', id: 4 },
   { name: 'Personal account', to: 'personal', id: 5 },
 ];
 
 export const menuItemsWorker = [
-  { name: 'Опитування', to: 'poll', id: 3 },
-  { name: 'Відпустка/Лікарняний', to: 'vacation', id: 4 },
+  { name: 'Poll', to: 'poll', id: 3 },
+  { name: 'Vacation/Sick', to: 'vacation', id: 4 },
   { name: 'Personal account', to: 'personal', id: 5 },
 ];
 
 export const menuItemsHr = [
-  { name: 'Опитування', to: 'poll', id: 3 },
-  { name: 'Відпустка/Лікарняний', to: 'vacation', id: 4 },
+  { name: 'Poll', to: 'poll', id: 3 },
+  { name: 'Vacation/Sick', to: 'vacation', id: 4 },
   { name: 'Personal account', to: 'personal', id: 5 },
 ];
 
 // dataPicker locale
-const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const months = {
   ua: [
-    'Січень',
-    'Лютий',
-    'Березень',
-    'Квітень',
-    'Травень',
-    'Червень',
-    'Липень',
-    'Серпень',
-    'Вересень',
-    'Жовтень',
-    'Листопад',
-    'Грудень',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ],
 };
 

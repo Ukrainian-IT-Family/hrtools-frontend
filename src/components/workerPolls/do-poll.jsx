@@ -154,7 +154,7 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
     <>
       <form>
         <S.PollTitle>{poll.title}</S.PollTitle>
-        {poll.anonymous && <S.PollTitleAnonim>Це опитування анонімне</S.PollTitleAnonim>}
+        {poll.anonymous && <S.PollTitleAnonim>This is Poll Anonymous</S.PollTitleAnonim>}
 
         {poll.questions.map((item, index) => (
           <S.QaItem key={item.id}>
@@ -184,7 +184,7 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
                       item.required &&
                       formik.values.answers[index] &&
                       !formik.values.answers[index].value &&
-                      'Це обовязкове поле'
+                      'This is a required field'
                     }
                   />
                 </S.AnswersItem>
@@ -192,10 +192,10 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
 
               {item.type === 3 && (
                 <FormControl fullWidth>
-                  <InputLabel id={`label-type${item.id}}`}>Відповідь</InputLabel>
+                  <InputLabel id={`label-type${item.id}}`}>Answer</InputLabel>
                   <Select
                     labelId={`label-type${item.id}}`}
-                    label="Відповідь"
+                    label="Answer"
                     name={`answers[${index}]`}
                     value={
                       formik.values.answers[index]
@@ -234,7 +234,7 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
                     ))}
                   </FormGroup>
                   {showValidate && item.required && formik.values.answers[index].length === 0 && (
-                    <FormHelperText>Виберіть мінімум одну відповідь</FormHelperText>
+                    <FormHelperText>Choose at least one answer</FormHelperText>
                   )}
                 </FormControl>
               )}
@@ -263,13 +263,13 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
 
         <Stack justifyContent="flex-end" direction="row" mt={2}>
           <Button variant="contained" type="button" onClick={handleSubmit}>
-            Надіслати
+            Send
           </Button>
         </Stack>
 
         <Collapse in={valid}>
           <Stack mt={2}>
-            <Alert severity="error">Ви дали не всі обов&apos;язкові відповіді</Alert>
+            <Alert severity="error">You did not give all the mandatory answers</Alert>
           </Stack>
         </Collapse>
       </form>
@@ -287,7 +287,7 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
               <>
                 {isSubmit ? (
                   <>
-                    <S.QaModalTitle>Опитування успішно пройдено!</S.QaModalTitle>
+                    <S.QaModalTitle>Poll passed successfully!</S.QaModalTitle>
                     <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
                       <Button variant="contained" type="button" onClick={closeComponent}>
                         Ок
@@ -296,13 +296,13 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
                   </>
                 ) : (
                   <>
-                    <S.QaModalTitle>Ви впевнені що хочете надіслати відповіді?</S.QaModalTitle>
+                    <S.QaModalTitle>Are you sure you want to send answers?</S.QaModalTitle>
                     <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
                       <Button variant="contained" type="button" onClick={handleClose}>
-                        Ні
+                        No
                       </Button>
                       <Button variant="contained" onClick={handleDispatch}>
-                        Так
+                        Yes
                       </Button>
                     </Stack>
                   </>

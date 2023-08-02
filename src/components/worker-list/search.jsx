@@ -1,26 +1,13 @@
-import CloseIcon from '@mui/icons-material/Close';
-import DoneIcon from '@mui/icons-material/Done';
-import SearchIcon from '@mui/icons-material/Search';
-import {
-  Autocomplete,
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  InputBase,
-  Paper,
-  TextField,
-} from '@mui/material';
+import { TextField } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import * as S from './styles';
 
 const Search = ({ setSearchId }) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState([]);
   const workerList = useSelector((state) =>
     state.adminReducer.usersList.filter((item) => item.role === 2),
   );
@@ -62,7 +49,7 @@ const Search = ({ setSearchId }) => {
         renderInput={(params) => (
           <TextField
             size="small"
-            placeholder="Пошук..."
+            placeholder="Search..."
             {...params}
             InputProps={{
               ...params.InputProps,

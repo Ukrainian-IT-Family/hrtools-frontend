@@ -60,7 +60,7 @@ const VeiwPoll = ({ selectPoll }) => {
                             {isCheckedAnswerText(item.answers[0].questionId)}
                           </S.AnswersItem>
                         ) : (
-                          <>Немає відповіді</>
+                          <>No answer</>
                         )}
                       </>
                     ) : (

@@ -118,13 +118,13 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
       {fixWaiter && <FixLoader />}
       <form onSubmit={formik.handleSubmit} id="editPollModal">
         <FormikProvider value={formik}>
-          <S.PollTitle>Редагувати опитування</S.PollTitle>
+          <S.PollTitle>Edit Poll</S.PollTitle>
           <Grid container rowSpacing={2} columnSpacing={5}>
             <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
                 name="title"
-                label="Назва опитування"
+                label="Poll name"
                 value={formik.values.title}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -142,7 +142,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
                       onChange={(event) => formik.setFieldValue('anonymous', event.target.checked)}
                     />
                   }
-                  label="Анонімно"
+                  label="Anonymously"
                 />
               </FormGroup>
             </Grid>
@@ -160,7 +160,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
                             <TextField
                               id={`questions[${index}].name`}
                               name={`questions[${index}].name`}
-                              label="Запитання"
+                              label="Question"
                               variant="standard"
                               value={child.name}
                               fullWidth
@@ -328,7 +328,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
                                   }}
                                 />
                               }
-                              label="Обов'язково"
+                              label="Required"
                             />
                           </FormGroup>
                           {index > 0 && (
@@ -350,13 +350,13 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
               size="small"
               onClick={handleAddQuestions}
             >
-              Add форму
+              Add form
             </Button>
           )}
         </FormikProvider>
         <Stack justifyContent="flex-end" direction="row" mt={2}>
           <Button type="submit" variant="contained">
-            Редагувати
+            Question
           </Button>
         </Stack>
       </form>
@@ -364,7 +364,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
       <MyModal isOpen={formSubmit} handleOpen={handleOpen} handleClose={handleClose} width={400}>
         {formSubmit && (
           <>
-            <S.QaModalTitle>Зміни збережено!</S.QaModalTitle>
+            <S.QaModalTitle>Changes saved!</S.QaModalTitle>
             <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
               <Button variant="contained" onClick={handleClose}>
                 Ок
@@ -382,10 +382,10 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
       >
         {openModalHandle && (
           <>
-            <S.QaModalTitle>Ви дійсно бажаєте внести зміни?</S.QaModalTitle>
+            <S.QaModalTitle>You really want to make a change?</S.QaModalTitle>
             <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
               <Button variant="contained" onClick={handleCloseHandle}>
-                Ні
+                No
               </Button>
               <Button
                 variant="contained"
@@ -394,7 +394,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
                   handleCloseHandle();
                 }}
               >
-                Так
+                Yes
               </Button>
             </Stack>
           </>

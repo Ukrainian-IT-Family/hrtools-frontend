@@ -62,17 +62,17 @@ const HrAdminPoll = ({ isMain }) => {
     <>
       {isMain ? (
         <S.MainTop>
-          <S.MainTopTitle>Опитування працівників</S.MainTopTitle>
+          <S.MainTopTitle>Poll employees</S.MainTopTitle>
           <S.MainTopLink to="poll">
-            Дивитися всі
+            Watch all
             <ArrowForwardIcon />
           </S.MainTopLink>
         </S.MainTop>
       ) : (
         <S.MainTop>
-          <S.MainTopTitle>Всі опитування</S.MainTopTitle>
+          <S.MainTopTitle>Всі Poll</S.MainTopTitle>
           <Button startIcon={<AddIcon />} onClick={() => handleOpen()}>
-            Cтворити опитування
+            Create Poll
           </Button>
         </S.MainTop>
       )}
@@ -94,11 +94,11 @@ const HrAdminPoll = ({ isMain }) => {
                   <S.HrWrap>
                     <S.HrCol>
                       <S.HrColInfo>
-                        {item.date && <S.HrColInfoItem>Створенно: {item.date}</S.HrColInfoItem>}
+                        {item.date && <S.HrColInfoItem>Created: {item.date}</S.HrColInfoItem>}
                         {!item.anonymous ? (
-                          <S.HrColInfoItem>Автор: {item.author.fullName}</S.HrColInfoItem>
+                          <S.HrColInfoItem>Author: {item.author.fullName}</S.HrColInfoItem>
                         ) : (
-                          <S.HrColInfoItem>Анонімне</S.HrColInfoItem>
+                          <S.HrColInfoItem>Anonymous</S.HrColInfoItem>
                         )}
                       </S.HrColInfo>
                     </S.HrCol>
@@ -128,7 +128,7 @@ const HrAdminPoll = ({ isMain }) => {
               )}
             </S.HrList>
           ) : (
-            <>Немає опитувань</>
+            <>There are no polls</>
           )}
         </>
       ) : (

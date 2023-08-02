@@ -78,7 +78,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
             <>
               {isDelete ? (
                 <Stack mt={5} mb={5}>
-                  <S.QaModalTitle>Опитування видалено!</S.QaModalTitle>
+                  <S.QaModalTitle>Poll deleted!</S.QaModalTitle>
                   <Stack mt={2} justifyContent="center" direction="row" spacing={2}>
                     <Button variant="contained" type="button" onClick={handleClose}>
                       Ок
@@ -100,7 +100,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                     <Stack spacing={2} direction="row">
                       {poll.status === 1 && (
                         <Button variant="contained" onClick={() => handleOpenEdit()}>
-                          Редагувати
+                          Edit
                         </Button>
                       )}
 
@@ -111,10 +111,10 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                   </Stack>
                   <S.detailInfo>
                     {poll.author && (
-                      <S.detailInfoItem>Автор: {poll.author.fullName}</S.detailInfoItem>
+                      <S.detailInfoItem>Author: {poll.author.fullName}</S.detailInfoItem>
                     )}
-                    {poll.date && <S.detailInfoItem>Створенно {poll.date}</S.detailInfoItem>}
-                    <S.detailInfoItem>Анонімно {poll.anonymous ? 'Так' : 'Ні'}</S.detailInfoItem>
+                    {poll.date && <S.detailInfoItem>Created {poll.date}</S.detailInfoItem>}
+                    <S.detailInfoItem>Anonymously {poll.anonymous ? 'Так' : 'Ні'}</S.detailInfoItem>
                   </S.detailInfo>
                   <Stack
                     mt={2}
@@ -134,16 +134,16 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                     </S.detailWorkersList>
                     <S.detailStatusInfo>
                       <S.detailStatus>
-                        Пройдено/всього
+                        Passed/Total
                         <S.detailStatusText>
                           {poll.resultCount}/{poll.workersCount}
                         </S.detailStatusText>
                       </S.detailStatus>
                       {poll.status === 3 ? (
-                        <>Опитування завершено</>
+                        <>Poll completed</>
                       ) : (
                         <Button variant="contained" onClick={handleOpenComplete}>
-                          Завершити
+                          to complete
                         </Button>
                       )}
                     </S.detailStatusInfo>
@@ -162,10 +162,10 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
           >
             {openModalDel && (
               <>
-                <S.QaModalTitle>Delete це опитування?</S.QaModalTitle>
+                <S.QaModalTitle>Delete this Poll?</S.QaModalTitle>
                 <Stack mt={2} mb={2} justifyContent="center" direction="row" spacing={2}>
                   <Button variant="contained" type="button" onClick={handleCloseDel}>
-                    Cкасувати
+                    Cancel
                   </Button>
                   <Button
                     variant="contained"
@@ -189,10 +189,10 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
           >
             {openModalComplete && (
               <>
-                <S.QaModalTitle>Ви дійсно бажаєте завершити це опитування?</S.QaModalTitle>
+                <S.QaModalTitle>You really want to finish this Poll?</S.QaModalTitle>
                 <Stack mt={2} mb={2} justifyContent="center" direction="row" spacing={2}>
                   <Button variant="contained" type="button" onClick={handleCloseComplete}>
-                    Cкасувати
+                    Cancel
                   </Button>
                   <Button
                     variant="contained"
@@ -201,7 +201,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                       handleCloseComplete();
                     }}
                   >
-                    Завершити
+                    to complete
                   </Button>
                 </Stack>
               </>
@@ -221,7 +221,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
               <>
                 {isSend ? (
                   <>
-                    <S.QaModalTitle>Опитування надіслано</S.QaModalTitle>
+                    <S.QaModalTitle>Poll sent</S.QaModalTitle>
                     <Stack mt={2} mb={2} justifyContent="center" direction="row" spacing={2}>
                       <Button
                         variant="contained"
@@ -239,15 +239,15 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                   <>
                     {poll.status === 2 ? (
                       <S.QaModalTitle>
-                        Ви дійсно бажаєте внести зміни і надіслати ще раз?
+                        Are you sure you want to make changes and submit again?
                       </S.QaModalTitle>
                     ) : (
-                      <S.QaModalTitle>Надіслати це опитування працівникам?</S.QaModalTitle>
+                      <S.QaModalTitle>Send this to Poll Employees?</S.QaModalTitle>
                     )}
 
                     <Stack mt={2} mb={2} justifyContent="center" direction="row" spacing={2}>
                       <Button variant="contained" type="button" onClick={handleCloseSend}>
-                        Ні
+                        No
                       </Button>
                       <Button
                         variant="contained"
@@ -255,7 +255,7 @@ const DetailPoll = ({ role, selectPollId, handleClose }) => {
                           sendPoll(workerId);
                         }}
                       >
-                        Так
+                        Yes
                       </Button>
                     </Stack>
                   </>

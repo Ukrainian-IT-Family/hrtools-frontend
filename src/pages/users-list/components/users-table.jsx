@@ -1,9 +1,7 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import {
-  Alert,
   Button,
-  Collapse,
   IconButton,
   Paper,
   Stack,
@@ -26,9 +24,9 @@ import UserEdit from './user-edit/index';
 const getRoleName = (id) => {
   switch (id) {
     case 1:
-      return 'Адмін';
+      return 'Admin';
     case 2:
-      return 'Працівник';
+      return 'Employee';
     case 3:
       return 'HR';
     default:
@@ -67,7 +65,7 @@ const UsersTable = ({ filterParam, searchId }) => {
     dispatch(adminActions.adminGetUsers());
   }, []);
 
-  // Фільтр
+  // Filter
   const [userFiltred, setUsersFiltred] = useState([]);
   useEffect(() => {
     let list = usersList || [];
@@ -127,7 +125,7 @@ const UsersTable = ({ filterParam, searchId }) => {
         <S.UsersTableTop>
           <S.UsersTableTopTitle>
             <PersonOutlineOutlinedIcon />
-            Користувачі
+            Users
           </S.UsersTableTopTitle>
         </S.UsersTableTop>
         <S.UsersTableWrap>
@@ -142,12 +140,12 @@ const UsersTable = ({ filterParam, searchId }) => {
                         <TableCell align="center">Ім&apos;я</TableCell>
                         <TableCell align="center">Surname</TableCell>
                         <TableCell align="center">middle Name</TableCell>
-                        <TableCell align="center">Електрона адерса</TableCell>
-                        <TableCell align="center">Роль</TableCell>
-                        <TableCell align="center">Робочий час</TableCell>
-                        <TableCell align="center">Посада</TableCell>
-                        <TableCell align="center">Дата прийняття на роботу</TableCell>
-                        <TableCell align="center">Операції</TableCell>
+                        <TableCell align="center">Email</TableCell>
+                        <TableCell align="center">Role</TableCell>
+                        <TableCell align="center">Working hours</TableCell>
+                        <TableCell align="center">Position</TableCell>
+                        <TableCell align="center">Date of employment</TableCell>
+                        <TableCell align="center">Operations</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -187,7 +185,7 @@ const UsersTable = ({ filterParam, searchId }) => {
                   </Table>
                 </TableContainer>
               ) : (
-                <>Користувачів немає</>
+                <>there are no users</>
               )}
             </>
           ) : (
@@ -205,7 +203,7 @@ const UsersTable = ({ filterParam, searchId }) => {
         <S.UserDeleteModal>
           {deleteIsSuccess === true ? (
             <>
-              <S.UserDeleteTitle>Користувача видаленно</S.UserDeleteTitle>
+              <S.UserDeleteTitle>User deleted</S.UserDeleteTitle>
               <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
                 <Button variant="contained" onClick={handleClose}>
                   Ок
@@ -214,10 +212,10 @@ const UsersTable = ({ filterParam, searchId }) => {
             </>
           ) : (
             <>
-              <S.UserDeleteTitle>Delete цього користувача?</S.UserDeleteTitle>
+              <S.UserDeleteTitle>Delete this user?</S.UserDeleteTitle>
               <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
                 <Button variant="contained" onClick={handleClose}>
-                  Скасувати
+                  Cancel
                 </Button>
                 <Button variant="contained" color="error" onClick={handleDeleteDispatch}>
                   Delete

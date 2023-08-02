@@ -46,7 +46,7 @@ const Search = ({ setSearchId, workers }) => {
         renderInput={(params) => (
           <TextField
             size="small"
-            placeholder="Пошук..."
+            placeholder="Search..."
             {...params}
             InputProps={{
               ...params.InputProps,
