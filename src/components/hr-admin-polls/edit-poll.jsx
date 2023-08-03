@@ -356,7 +356,7 @@ const EditPoll = ({ handleClose, handleOpen, title, anonymous, questions, pollId
         </FormikProvider>
         <Stack justifyContent="flex-end" direction="row" mt={2}>
           <Button type="submit" variant="contained">
-            Question
+            Save
           </Button>
         </Stack>
       </form>

@@ -80,7 +80,7 @@ const UploadForm = ({ resumeFileName, userId, path }) => {
               onChange={onFileChange}
             />
           </Button>
-          <S.UploadText>doc, docs, PDF (до 5мб)</S.UploadText>
+          <S.UploadText>doc, docs, PDF (up to 5mb)</S.UploadText>
         </S.UploadFlexButton>
         {fileName ? (
           <S.UploadFile>

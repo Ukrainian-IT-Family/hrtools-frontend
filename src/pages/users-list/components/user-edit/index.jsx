@@ -423,9 +423,9 @@ const UserEdit = ({ userId }) => {
                   <FormControl>
                     <RadioGroup
                       aria-labelledby="role"
-                      defaultValue={userInfoFiltered.role || '0'}
+                      value={formik.values.role || '0'}
                       name="role"
-                      onChange={formik.handleChange}
+                      onChange={(e) => formik.setFieldValue('role', e.target.value)}
                     >
                       <FormControlLabel value="3" control={<Radio />} label="HR" />
                       <FormControlLabel value="2" control={<Radio />} label="Employee" />

@@ -348,7 +348,7 @@ const CreatePoll = ({ handleClose, handleOpen }) => {
         </FormikProvider>
         <Stack justifyContent="flex-end" direction="row" mt={2}>
           <Button type="submit" variant="contained">
-            Створити
+            Create
           </Button>
         </Stack>
       </form>

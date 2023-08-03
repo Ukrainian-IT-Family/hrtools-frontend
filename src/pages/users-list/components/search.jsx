@@ -24,7 +24,7 @@ const Search = ({ setSearchId }) => {
 
   return (
     <>
-      <S.SearchText>Enter username to search</S.SearchText>
+      <S.SearchText>Enter user name to search</S.SearchText>
       <S.SearchForm>
         <S.SearchField
           id="asynchronous-demo"

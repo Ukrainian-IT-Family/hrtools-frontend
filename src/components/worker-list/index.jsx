@@ -87,7 +87,7 @@ const WorkerList = ({ action, userId, wichList }) => {
                   return (
                     <S.Item key={item.id} onClick={() => addWichId(item.id)}>
                       <S.Name>
-                        {item.shortName} {item.manager && `(є HR)`}
+                        {item.shortName} {item.manager && `(Hr)`}
                       </S.Name>
                       <IconButton>
                         <AddIcon />
@@ -114,7 +114,7 @@ const WorkerList = ({ action, userId, wichList }) => {
                     return (
                       <S.Item key={item.id} onClick={() => removeWichId(item.id)}>
                         <S.Name>
-                          {item.shortName} {item.manager && `(є HR)`}
+                          {item.shortName} {item.manager && `(Hr)`}
                         </S.Name>
                         <IconButton>
                           <RemoveIcon />

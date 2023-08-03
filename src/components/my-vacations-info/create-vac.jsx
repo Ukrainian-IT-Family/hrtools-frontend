@@ -104,7 +104,6 @@ const CreateVac = ({ handleClose }) => {
 
           <S.ModalRow>
             <S.ModalLabel>Comment</S.ModalLabel>
-            <S.ModalLabel>Comment</S.ModalLabel>
             <TextField
               mt={1}
               fullWidth
