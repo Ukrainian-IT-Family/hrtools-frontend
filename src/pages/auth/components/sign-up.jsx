@@ -78,7 +78,7 @@ const SignUp = () => {
     <>
       {!authLoader ? (
         <>
-          <S.AuthTitle>Реєстрація</S.AuthTitle>
+          <S.AuthTitle>Registration</S.AuthTitle>
 
           <form onSubmit={formik.handleSubmit}>
             <S.FormRow>

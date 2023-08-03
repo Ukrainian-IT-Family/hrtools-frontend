@@ -190,7 +190,7 @@ const PersonalForm = () => {
               <TextField
                 fullWidth
                 name="middleName"
-                label="middle Name"
+                label="Middle name"
                 value={formik.values.middleName || ''}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

@@ -139,7 +139,7 @@ const UsersTable = ({ filterParam, searchId }) => {
                         <TableCell align="center">ID</TableCell>
                         <TableCell align="center">Name</TableCell>
                         <TableCell align="center">Surname</TableCell>
-                        <TableCell align="center">middle Name</TableCell>
+                        <TableCell align="center">Middle name</TableCell>
                         <TableCell align="center">Email</TableCell>
                         <TableCell align="center">Role</TableCell>
                         <TableCell align="center">Working hours</TableCell>
