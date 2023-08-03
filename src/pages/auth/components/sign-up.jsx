@@ -103,7 +103,7 @@ const SignUp = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
-                label="password"
+                label="Password"
                 type="password"
                 name="password"
                 id="password"

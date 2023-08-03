@@ -67,7 +67,7 @@ const WorkerListPoll = ({ workers, wichList, sendPoll }) => {
         <S.PickAll>
           <FormControlLabel
             control={<Checkbox defaultChecked={false} onChange={toggleWich} />}
-            label="Усі Users"
+            label="All Users"
           />
         </S.PickAll>
 

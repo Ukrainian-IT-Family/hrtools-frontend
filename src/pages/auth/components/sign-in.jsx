@@ -82,7 +82,7 @@ const SignIn = () => {
                 onBlur={formik.handleBlur}
                 fullWidth
                 value={formik.values.password}
-                label="password"
+                label="Password"
                 type="password"
                 name="password"
                 id="password"

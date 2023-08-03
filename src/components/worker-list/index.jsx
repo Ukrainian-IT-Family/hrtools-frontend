@@ -75,7 +75,7 @@ const WorkerList = ({ action, userId, wichList }) => {
         <S.PickAll>
           <FormControlLabel
             control={<Checkbox defaultChecked={false} onChange={toggleWich} />}
-            label="Усі Users"
+            label="All Users"
           />
         </S.PickAll>
 

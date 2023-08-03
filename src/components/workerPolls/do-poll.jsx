@@ -35,12 +35,14 @@ const DoPoll = ({ selectPoll, closeComponent }) => {
 
   const [showValidate, setShowValidate] = useState(false);
   const [valid, setValid] = useState(false);
-  const answers = poll.questions.map((item) => {
-    if (item.type === 3 || item.type === 2) {
-      return item.answers[0];
-    }
-    return [];
-  });
+  const answers = poll.questions
+    ? poll.questions.map((item) => {
+        if (item.type === 3 || item.type === 2) {
+          return item.answers[0];
+        }
+        return [];
+      })
+    : [];
   const [isSubmit, setIsSubmit] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => setOpenModal(true);
